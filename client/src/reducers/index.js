@@ -81,6 +81,20 @@ const reducers = {
       return { todos: newTodos };
     }
   },
+  [actions.REMOVE_POMO](state, action) {
+    const newTodos = Array.from(state.todos);
+    const idx = newTodos.findIndex((it) => it.id === action.id);
+    if(idx < 0) {
+      console.error(`REMOVE_POMO reducer: action.id ${action.id} is not a valid todo id.`);
+      return {};
+    } else {
+      newTodos[idx].pomoCount--;
+      if(newTodos[idx].pomoCount < 0) {
+        newTodos[idx].pomoCount = 0;
+      }
+      return { todos: newTodos };
+    }
+  },
   [actions.SET_ACTIVE_TODO](state, action) {
     const newTodos = Array.from(state.todos);
     const idx = newTodos.findIndex((it) => it.id === action.id);

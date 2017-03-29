@@ -44,6 +44,13 @@ export function addPomo(id /* of todo item */) {
   }
 }
 
+export function removePomo(id /* of todo item */) {
+  return {
+    type: actions.REMOVE_POMO,
+    id
+  }
+}
+
 export function setActiveTodo(id /* of todo item */) {
   return {
     type: actions.SET_ACTIVE_TODO,
