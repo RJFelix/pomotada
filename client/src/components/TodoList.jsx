@@ -4,15 +4,24 @@ import AddTodo from "./AddTodo";
 import { connect } from "react-redux";
 import React from "react";
 
+
+import "./TodoList.css";
+
 function TodoList(props) {
   return(
     <div>
       <List>
         {props.todos.map(todo =>
-          <TodoListItem
+          <span
             key={todo.id}
-            text={todo.text}
-          />
+          >
+            <TodoListItem
+              text={todo.text}
+              id={todo.id}
+              finished={todo.finished}
+              pomoCount={todo.pomoCount}
+            />
+          </span>
         )}
       </List>
       <AddTodo />
