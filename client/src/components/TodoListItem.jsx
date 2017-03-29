@@ -1,6 +1,7 @@
 import { ListItem } from "material-ui/List";
 import React from "react";
 import CompleteTodo from "./CompleteTodo";
+import RemoveTodo from "./RemoveTodo";
 
 export default function TodoListItem(props) {
   let tempPomoCounter = " ";
@@ -15,6 +16,9 @@ export default function TodoListItem(props) {
     >
       <span>
         <CompleteTodo
+          id={props.id}
+        />
+        <RemoveTodo
           id={props.id}
         />
         {props.text + tempPomoCounter}    
