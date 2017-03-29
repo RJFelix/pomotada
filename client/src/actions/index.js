@@ -16,9 +16,9 @@ export function removeTodo(id) {
   }
 }
 
-export function finishTodo(id) {
+export function toggleTodo(id) {
   return {
-    type: actions.FINISH_TODO,
+    type: actions.TOGGLE_TODO,
     id
   }
 }

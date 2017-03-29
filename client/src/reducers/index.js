@@ -41,14 +41,14 @@ const reducers = {
                           .filter((it) => it.id !== action.id);
     return { todos: newTodos };
   },
-  [actions.FINISH_TODO](state, action) {
+  [actions.TOGGLE_TODO](state, action) {
     const newTodos = Array.from(state.todos);
     const idx = newTodos.findIndex((it) => it.id === action.id);
     if(idx < 0) {
       console.error(`FINISH_TODO reducer: action.id ${action.id} is not a valid todo id.`);
       return {};
     } else {
-      newTodos[idx].finished = true;
+      newTodos[idx].finished = !newTodos[idx].finished;
       return { todos: newTodos };
     }
   },
