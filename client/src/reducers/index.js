@@ -6,6 +6,7 @@ import initialState from "./initialState";
    the difference between the previous state and new state.
    For no change, return an empty object. */
 const reducers = {
+  // action.category < 0 => use the active category
   [actions.ADD_TODO](state, action) {
     const newTodos = Array.from(state.todos);
     // get a new ID 1 greater than the largest existing ID
@@ -13,11 +14,24 @@ const reducers = {
       (accum, cv) => (cv.id > accum ? cv.id : accum),
       0
     ) + 1;
+    let newTodoCategory;
+    if(action.category >= 0) {
+      newTodoCategory = action.category;
+    } else {
+      // use active category if it exists
+      let activeCategory = state.categories.find((val) => val.active);
+      if(activeCategory) {
+        newTodoCategory = activeCategory.id;
+      } else {
+        console.error("ADD_TODO: no active category found, defaulting to 0");
+        newTodoCategory = 0;
+      }
+    }
     newTodos.push({
       text: action.text,
-      category: action.category,
+      category: newTodoCategory,
       id: newID,
-      pomoCount: 0,
+      pomoCount: 0, 
       active: false
     });
     return { todos: newTodos };

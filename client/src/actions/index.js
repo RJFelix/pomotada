@@ -1,6 +1,7 @@
 import actions from "./actions";
 
-export function addTodo(text, category) {
+// -1 => default to active category
+export function addTodo(text, category = -1) {
   return {
     type: actions.ADD_TODO,
     text,
