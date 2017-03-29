@@ -19,7 +19,7 @@ const reducers = {
       newTodoCategory = action.category;
     } else {
       // use active category if it exists
-      let activeCategory = state.categories.find((val) => val.active);
+      let activeCategory = state.categories.find((category) => category.active);
       if(activeCategory) {
         newTodoCategory = activeCategory.id;
       } else {
@@ -38,12 +38,12 @@ const reducers = {
   },
   [actions.REMOVE_TODO](state, action) {
     const newTodos = Array.from(state.todos)
-                          .filter((it) => it.id !== action.id);
+                          .filter((todo) => todo.id !== action.id);
     return { todos: newTodos };
   },
   [actions.TOGGLE_TODO](state, action) {
     const newTodos = Array.from(state.todos);
-    const idx = newTodos.findIndex((it) => it.id === action.id);
+    const idx = newTodos.findIndex((todo) => todo.id === action.id);
     if(idx < 0) {
       console.error(`FINISH_TODO reducer: action.id ${action.id} is not a valid todo id.`);
       return {};
@@ -67,12 +67,12 @@ const reducers = {
   },
   [actions.REMOVE_CATEGORY](state, action) {
     const newCategories = Array.from(state.categories)
-                               .filter((it) => it.id !== action.id);
+                               .filter((category) => category.id !== action.id);
     return { categories: newCategories };
   },
   [actions.ADD_POMO](state, action) {
     const newTodos = Array.from(state.todos);
-    const idx = newTodos.findIndex((it) => it.id === action.id);
+    const idx = newTodos.findIndex((todo) => todo.id === action.id);
     if(idx < 0) {
       console.error(`ADD_POMO reducer: action.id ${action.id} is not a valid todo id.`);
       return {};
@@ -83,7 +83,7 @@ const reducers = {
   },
   [actions.REMOVE_POMO](state, action) {
     const newTodos = Array.from(state.todos);
-    const idx = newTodos.findIndex((it) => it.id === action.id);
+    const idx = newTodos.findIndex((todo) => todo.id === action.id);
     if(idx < 0) {
       console.error(`REMOVE_POMO reducer: action.id ${action.id} is not a valid todo id.`);
       return {};
@@ -95,25 +95,25 @@ const reducers = {
       return { todos: newTodos };
     }
   },
-  [actions.SET_ACTIVE_TODO](state, action) {
+  [actions.TOGGLE_ACTIVE_TODO](state, action) {
     const newTodos = Array.from(state.todos);
-    const idx = newTodos.findIndex((it) => it.id === action.id);
+    const idx = newTodos.findIndex((todo) => todo.id === action.id);
     if(idx < 0) {
       console.error(`SET_ACTIVE_TODO reducer: action.id ${action.id} is not a valid todo id.`);
       return {};
     } else {
-      newTodos[idx].active = true;
+      newTodos[idx].active = !newTodos[idx].active;
       return { todos: newTodos };
     }
   },
   [actions.CLEAR_ACTIVE_TODO](state, action) {
     const newTodos = Array.from(state.todos)
-                          .map((it) => Object.assign({}, it, { active: false }));
+                          .map((todo) => Object.assign({}, todo, { active: false }));
     return { todos: newTodos };
   },
   [actions.SET_ACTIVE_CATEGORY](state, action) {
     const newCategories = Array.from(state.categories);
-    const idx = newCategories.findIndex((it) => it.id === action.id);
+    const idx = newCategories.findIndex((category) => category.id === action.id);
     if(idx < 0) {
       console.error(`SET_ACTIVE_CATEGORY reducer: action.id ${action.id} is not a valid category id.`);
       return {};
