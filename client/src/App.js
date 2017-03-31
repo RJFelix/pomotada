@@ -9,9 +9,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App">
-          <Timer 
-            initialTime={3610}  
-          />
+          <Timer />
           <TodoList />
         </div>
       </MuiThemeProvider>

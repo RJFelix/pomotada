@@ -32,7 +32,7 @@ export function addCategory(title) {
 
 export function removeCategory(id) {
   return {
-    type: actions.removeCategory,
+    type: actions.REMOVE_CATEGORY,
     id
   }
 }
@@ -70,6 +70,12 @@ export function startTimer() {
   }
 }
 
+export function pauseTimer() {
+  return {
+    type: actions.PAUSE_TIMER
+  }
+}
+
 export function stopTimer() {
   return {
     type: actions.STOP_TIMER
@@ -80,5 +86,11 @@ export function setTimer(time /* in seconds */) {
   return {
     type: actions.SET_TIMER,
     time
+  }
+}
+
+export function timerFinished() {
+  return {
+    type: actions.TIMER_FINISHED
   }
 }

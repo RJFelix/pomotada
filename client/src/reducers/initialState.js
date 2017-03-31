@@ -42,6 +42,7 @@ const initialState = {
     pomoCount: 0
   }],
   timerRunning: false,
+  timerPaused: false,
   timerTime: 60
 }
 

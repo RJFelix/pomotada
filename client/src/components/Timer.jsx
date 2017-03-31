@@ -1,38 +1,63 @@
 import React from "react";
+import { connect } from "react-redux";
+import { timerFinished } from "../actions";
+import TimerControl from "./TimerControl";
 
-export default class Timer extends React.Component {
+class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      secondsRemaining: props.initialTime
+      secondsRemaining: 10,
+      isRunning: props.shouldRun
+    }
+    this.justFinished = false;
+  }
+
+  componentWillUpdate() {
+    if(!this.justFinished && this.state.secondsRemaining === 0) {
+      this.justFinished = true;
+      this.props.timerFinished();
     }
   }
 
-  componentDidMount() {
-    this.interval = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  componentWillReceiveProps(nextProps) {
+    if(this.props.shouldRun !== nextProps.shouldRun) {
+      if(nextProps.shouldRun) {
+        this.interval = setInterval(
+          () => this.tick(),
+          1000
+        );
+        this.justFinished = false;
+        this.setState({
+          secondsRemaining: nextProps.assignedTime,
+          isRunning: true
+        });
+      } else { // should stop running
+        clearInterval(this.interval);
+        this.setState({
+          isRunning: false
+        })
+      }
+    }
   }
 
   tick() {
-    this.setState(
-      (prevState, props) => ({
-        secondsRemaining: prevState.secondsRemaining > 0 ? prevState.secondsRemaining - 1 : 0
-      })
-    );
+    if(!this.props.shouldPause) {
+      this.setState(
+        (prevState, props) => ({
+          secondsRemaining: prevState.secondsRemaining > 0 ? prevState.secondsRemaining - 1 : 0
+        })
+      );
+    }
   }
 
   render() {
     return(
       <div>
         <h1>
-          {formatTime(this.state.secondsRemaining)}
+          {(this.state.isRunning && formatTime(this.state.secondsRemaining)) || "Timer stopped."}
         </h1>
+        <TimerControl />
       </div>
     );
   }
@@ -59,3 +84,19 @@ function withLeadingZero(num) {
     (num >= 10 ? num : "0" + num).toString()
   )
 }
+
+function mapStateToProps(state) {
+  return {
+    shouldRun: state.timerRunning,
+    assignedTime: state.timerTime,
+    shouldPause: state.timerPaused
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    timerFinished: () => dispatch(timerFinished())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
