@@ -51,9 +51,9 @@ export function removePomo(id /* of todo item */) {
   }
 }
 
-export function setActiveTodo(id /* of todo item */) {
+export function toggleActiveTodo(id /* of todo item */) {
   return {
-    type: actions.SET_ACTIVE_TODO,
+    type: actions.TOGGLE_ACTIVE_TODO,
     id
   }
 }
@@ -92,5 +92,36 @@ export function setTimer(time /* in seconds */) {
 export function timerFinished() {
   return {
     type: actions.TIMER_FINISHED
+  }
+}
+
+// to make available to other modules that don't include the actions themselves
+export const APPSTATE = actions.SET_STATE;
+export function setAppState(state) {
+  if(!(state in Object.values(APPSTATE))) {
+    console.error(`setAppState action creator: invalid state provided: ${state}`);
+    return {
+      type: actions.SET_STATE.DEFAULT
+    }
+  } else {
+    return {
+      type: state
+    }
+  }
+}
+
+// to make available to other modules that don't want to include the actions themselves
+export const SETTING = actions.SET_SETTING;
+export function setSetting(setting, value) {
+  if(!(setting in Object.values(SETTING))) {
+    console.error(`setSetting action creator: invalid setting provided: ${setting}`);
+    return {
+      type: null
+    }
+  } else {
+    return {
+      type: setting,
+      value
+    }
   }
 }

@@ -65,7 +65,7 @@ class Timer extends React.Component {
 
 // Returns a properly formatted string of the form [minutes]:[seconds]
 function formatTime(seconds) {
-  const SECONDS_IN_HOUR = 3600;
+  const SECONDS_IN_HOUR = 3600; 
   const hoursPortion = Math.floor(seconds / SECONDS_IN_HOUR);
   const secondsLeftOver = seconds - (SECONDS_IN_HOUR * hoursPortion);
   const minutesPortion = Math.floor(secondsLeftOver / 60);

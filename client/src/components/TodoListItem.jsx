@@ -4,6 +4,7 @@ import CompleteTodo from "./CompleteTodo";
 import RemoveTodo from "./RemoveTodo";
 import AddPomo from "./AddPomo";
 import RemovePomo from "./RemovePomo";
+import MakeActiveTodo from "./MakeActiveTodo";
 
 export default function TodoListItem(props) {
   let tempPomoCounter = " ";
@@ -14,6 +15,7 @@ export default function TodoListItem(props) {
     <ListItem
       style={{
         color: props.finished ? "lightgrey" : "",
+        backgroundColor: props.active ? "green" : ""
       }}
     >
       <span>
@@ -28,6 +30,9 @@ export default function TodoListItem(props) {
           id={props.id}
         />
         <RemovePomo
+          id={props.id}
+        />
+        <MakeActiveTodo
           id={props.id}
         />
       </span>

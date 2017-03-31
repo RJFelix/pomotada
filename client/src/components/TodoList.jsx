@@ -20,6 +20,7 @@ function TodoList(props) {
               id={todo.id}
               finished={todo.finished}
               pomoCount={todo.pomoCount}
+              active={todo.active}
             />
           </span>
         )}

@@ -13,7 +13,18 @@ const actions = {
   PAUSE_TIMER: "PAUSE_TIMER",
   STOP_TIMER: "STOP_TIMER",
   SET_TIMER: "SET_TIMER",
-  TIMER_FINISHED: "TIMER_FINISHED"
+  TIMER_FINISHED: "TIMER_FINISHED",
+  SET_STATE: {
+    DEFAULT: "STATE_DEFAULT",
+    WORK: "STATE_WORK",
+    REST: "STATE_REST",
+    BREAK: "STATE_BREAK"
+  },
+  SET_SETTING: {
+    WORK_TIME: "SET_WORK_TIME",
+    REST_TIME: "SET_REST_TIME",
+    BREAK_TIME: "SET_BREAK_TIME"
+  }
 }
 
-export default actions;
+export default Object.freeze(actions); // because we can!
