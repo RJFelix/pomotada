@@ -7,6 +7,8 @@ import { APPSTATE } from "./actions";
 import Topper from "./components/Topper.jsx";
 import AppDefault from "./views/AppDefault";
 import AppWork from "./views/AppWork";
+import AppRest from "./views/AppRest";
+import AppBreak from "./views/AppBreak";
 
 
 class App extends Component {
@@ -20,6 +22,12 @@ class App extends Component {
           }
           { this.props.appState === APPSTATE.DEFAULT &&
           <AppDefault />
+          }
+          { this.props.appState === APPSTATE.REST &&
+          <AppRest />
+          }
+          { this.props.appState === APPSTATE.BREAK &&
+          <AppBreak />
           }
         </div>
       </MuiThemeProvider>

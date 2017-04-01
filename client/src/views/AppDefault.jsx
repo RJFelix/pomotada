@@ -19,7 +19,6 @@ function AppDefault(props) {
 function mapDispatchToProps(dispatch) {
   return {
     startWork: () => {
-      dispatch(setAppState(APPSTATE.WORK));
       dispatch(startTimer());
     }
   }

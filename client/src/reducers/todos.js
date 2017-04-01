@@ -76,7 +76,7 @@ const reducers = {
     }
   },
   [actions.TOGGLE_ACTIVE_TODO](state, action) {
-    const newTodos = Array.from(state.todos);
+    let newTodos = Array.from(state.todos);
     const idx = newTodos.findIndex((todo) => todo.id === action.id);
     if(idx < 0) {
       console.error(`SET_ACTIVE_TODO reducer: action.id ${action.id} is not a valid todo id.`);
@@ -86,6 +86,10 @@ const reducers = {
         newTodos[idx].active = false;
       } else {
         newTodos[idx].active = !newTodos[idx].active;
+        // deactivate all other todos
+        newTodos = newTodos.map((todo, i) => i === idx 
+                                             ? todo 
+                                             : Object.assign({}, todo, { active: false }));
       }
       return { todos: newTodos };
     }

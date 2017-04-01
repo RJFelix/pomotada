@@ -1,28 +1,36 @@
 import React from "react";
 import Timer from "../components/Timer";
 import { connect } from "react-redux";
-import RaisedButton from "material-ui/RaisedButton";
 import { stopTimer, setAppState, APPSTATE } from "../actions";
 
 function AppWork(props) {
   return(
     <div>
-      <RaisedButton
-        label="Default"
-        onTouchTap={props.stopWork}
-      />
+      <p>{props.activeTask}</p>
       <Timer />
     </div>
   )
+}
+
+function mapStateToProps(state) {
+  const task = state.todos.find((todo) => todo.active);
+  let taskText;
+  if(task) {
+    taskText = task.text;
+  } else {
+    taskText = "No task selected!";
+  }
+  return {
+    activeTask: taskText
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     stopWork: () => {
       dispatch(stopTimer());
-      dispatch(setAppState(APPSTATE.DEFAULT));
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(AppWork);
+export default connect(mapStateToProps, mapDispatchToProps)(AppWork);

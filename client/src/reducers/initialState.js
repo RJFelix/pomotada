@@ -46,7 +46,24 @@ const initialState = {
   timerRunning: false,
   timerPaused: false,
   timerTime: 60,
-  appState: APPSTATE.DEFAULT
+  appState: APPSTATE.DEFAULT,
+  program: [{
+    appState: APPSTATE.WORK,
+    time: 20
+  },
+  {
+    appState: APPSTATE.REST,
+    time: 10
+  },
+  {
+    appState: APPSTATE.WORK,
+    time: 20
+  },
+  {
+    appState: APPSTATE.BREAK,
+    time: 30
+  }],
+  currentProgramIndex: 0
 }
 
 export default initialState;
