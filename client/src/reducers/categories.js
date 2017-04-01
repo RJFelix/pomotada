@@ -21,7 +21,8 @@ const reducers = {
   },
   
   [actions.SET_ACTIVE_CATEGORY](state, action) {
-    const newCategories = Array.from(state.categories);
+    const newCategories = Array.from(state.categories)
+                               .map((category) => Object.assign({}, category, { active: false }));
     const idx = newCategories.findIndex((category) => category.id === action.id);
     if(idx < 0) {
       console.error(`SET_ACTIVE_CATEGORY reducer: action.id ${action.id} is not a valid category id.`);

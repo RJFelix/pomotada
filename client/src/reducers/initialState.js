@@ -1,13 +1,15 @@
+import { APPSTATE, SETTINGS } from "../actions";
+
 const initialState = {
   categories: [{
     title: "Work",
     id: 0,
-    active: true
+    active: true,
   },
   {
     title: "Study",
     id: 1,
-    active: false
+    active: false,
   }],
   todos: [{
     text: "Reticulate splines",
@@ -43,7 +45,8 @@ const initialState = {
   }],
   timerRunning: false,
   timerPaused: false,
-  timerTime: 60
+  timerTime: 60,
+  appState: APPSTATE.DEFAULT
 }
 
 export default initialState;

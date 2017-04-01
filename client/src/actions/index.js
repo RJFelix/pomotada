@@ -64,6 +64,13 @@ export function clearActiveTodo() {
   }
 }
 
+export function setActiveCategory(id) {
+  return {
+    type: actions.SET_ACTIVE_CATEGORY,
+    id
+  }
+}
+
 export function startTimer() {
   return {
     type: actions.START_TIMER
@@ -98,15 +105,10 @@ export function timerFinished() {
 // to make available to other modules that don't include the actions themselves
 export const APPSTATE = actions.SET_STATE;
 export function setAppState(state) {
-  if(!(state in Object.values(APPSTATE))) {
-    console.error(`setAppState action creator: invalid state provided: ${state}`);
-    return {
-      type: actions.SET_STATE.DEFAULT
-    }
-  } else {
-    return {
-      type: state
-    }
+  // temporarily unguarded :(
+  console.log(state);
+  return {
+    type: state
   }
 }
 

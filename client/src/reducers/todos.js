@@ -16,6 +16,7 @@ const reducers = {
       // use active category if it exists
       let activeCategory = state.categories.find((category) => category.active);
       if(activeCategory) {
+        console.log("Added todo to active category " + activeCategory.id);
         newTodoCategory = activeCategory.id;
       } else {
         console.error("ADD_TODO: no active category found, defaulting to 0");
@@ -41,6 +42,7 @@ const reducers = {
     const idx = newTodos.findIndex((todo) => todo.id === action.id);
     if(idx < 0) {
       console.error(`FINISH_TODO reducer: action.id ${action.id} is not a valid todo id.`);
+      console.info("Todo ids: " + state.todos.map((todo) => todo.id));
       return {};
     } else {
       newTodos[idx].finished = !newTodos[idx].finished;

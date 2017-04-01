@@ -2,7 +2,7 @@ import actions from "../actions/actions";
 
 const reducers = {
   [actions.START_TIMER](state, action) {
-    if(state.timerPaused) {
+    if(state.timerRunning && state.timerPaused) {
       return { timerPaused: false }
     } else {
       return { timerRunning: true, timerPaused: false, timerTime: 15 };

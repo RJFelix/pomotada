@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import './App.css';
-import Timer from "./components/Timer.jsx";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import TodoList from "./components/TodoList.jsx";
+import { connect } from "react-redux";
+import { APPSTATE } from "./actions";
+
+import Topper from "./components/Topper.jsx";
+import AppDefault from "./views/AppDefault";
+import AppWork from "./views/AppWork";
+
 
 class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="App">
-          <Timer />
-          <TodoList />
+        <div>
+          <Topper />
+          { this.props.appState === APPSTATE.WORK &&
+          <AppWork />
+          }
+          { this.props.appState === APPSTATE.DEFAULT &&
+          <AppDefault />
+          }
         </div>
       </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    appState: state.appState
+  }
+}
+
+export default connect(mapStateToProps)(App);

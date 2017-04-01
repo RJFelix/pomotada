@@ -1,13 +1,11 @@
 import { List } from "material-ui/List";
 import TodoListItem from "./TodoListItem";
 import AddTodo from "./AddTodo";
-import { connect } from "react-redux";
 import React from "react";
-
 
 import "./TodoList.css";
 
-function TodoList(props) {
+export default function TodoList(props) {
   return(
     <div>
       <List>
@@ -29,11 +27,3 @@ function TodoList(props) {
     </div>
   );
 }
-
-function mapStateToProps(state) {
-  return {
-    todos: state.todos
-  }
-}
-
-export default connect(mapStateToProps)(TodoList);
