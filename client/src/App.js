@@ -4,7 +4,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { connect } from "react-redux";
 import { APPSTATE } from "./actions";
 
-import Topper from "./components/Topper.jsx";
+import Topper from "./components/Topper";
+import LeftMenu from "./components/LeftMenu";
 import AppDefault from "./views/AppDefault";
 import AppWork from "./views/AppWork";
 import AppRest from "./views/AppRest";
@@ -17,6 +18,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <Topper />
+          <LeftMenu />
           { this.props.appState === APPSTATE.WORK &&
           <AppWork />
           }

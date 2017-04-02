@@ -24,7 +24,8 @@ const actions = {
     WORK_TIME: "SET_WORK_TIME",
     REST_TIME: "SET_REST_TIME",
     BREAK_TIME: "SET_BREAK_TIME"
-  }
+  },
+  TOGGLE_LEFT_MENU: "TOGGLE_LEFT_MENU"
 }
 
 export default Object.freeze(actions); // because we can!

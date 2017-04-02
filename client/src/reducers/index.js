@@ -11,8 +11,9 @@ import time from "./time";
 import categories from "./categories";
 import appState from "./appState";
 import settings from "./settings";
+import misc from "./misc";
 
-const reducers = Object.assign({}, todos, time, categories, appState, settings);
+const reducers = Object.assign({}, todos, time, categories, appState, settings, misc);
 
 function createReducer(initialState, handlers) {
   return function reducer(state = initialState, action) {

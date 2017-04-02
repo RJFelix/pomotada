@@ -127,3 +127,9 @@ export function setSetting(setting, value) {
     }
   }
 }
+
+export function toggleLeftMenu() {
+  return {
+    type: actions.TOGGLE_LEFT_MENU
+  }
+}

@@ -63,7 +63,8 @@ const initialState = {
     appState: APPSTATE.BREAK,
     time: 30
   }],
-  currentProgramIndex: 0
+  currentProgramIndex: 0,
+  leftMenuOpen: false
 }
 
 export default initialState;
