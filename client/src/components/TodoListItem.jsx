@@ -1,41 +1,47 @@
-import { ListItem } from "material-ui/List";
 import React from "react";
-import CompleteTodo from "./CompleteTodo";
-import RemoveTodo from "./RemoveTodo";
-import AddPomo from "./AddPomo";
-import RemovePomo from "./RemovePomo";
-import MakeActiveTodo from "./MakeActiveTodo";
+import { connect } from "react-redux";
+import { ListItem } from "material-ui/List";
+import Checkbox from "material-ui/Checkbox";
+import TodoListItemPopover from "./TodoListItemPopover";
 
-export default function TodoListItem(props) {
+import { toggleActiveTodo } from "../actions";
+
+function TodoListItem(props) {
   let tempPomoCounter = " ";
   for(let i = 0; i < props.pomoCount; i++) {
     tempPomoCounter += "*";
   }
   return(
     <ListItem
+      primaryText={props.text}
       style={{
-        color: props.finished ? "lightgrey" : "",
-        backgroundColor: props.active ? "green" : ""
+        color: props.finished ? "lightgrey" : ""
       }}
-    >
-      <span>
-        <CompleteTodo
-          id={props.id}
+      leftCheckbox={
+        <Checkbox 
+          onCheck={(evt, checked) => props.toggleActive(props.id)}
+          checked={props.active}
+          disabled={props.finished}
         />
-        <RemoveTodo
+      }
+      rightIconButton={
+        <TodoListItemPopover
           id={props.id}
+          finished={props.finished}
         />
-        {props.text + tempPomoCounter}    
-        <AddPomo
-          id={props.id}
-        />
-        <RemovePomo
-          id={props.id}
-        />
-        <MakeActiveTodo
-          id={props.id}
-        />
-      </span>
-    </ListItem>
+      }
+    />
   )
 }
+
+function mapStateToProps(state) {
+  return {}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleActive: (id) => dispatch(toggleActiveTodo(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoListItem);

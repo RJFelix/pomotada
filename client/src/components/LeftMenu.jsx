@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
+import Divider from "material-ui/Divider";
 import { toggleLeftMenu } from "../actions";
 
 
@@ -31,6 +32,11 @@ class LeftMenu extends React.Component {
       >
         <MenuItem>Item</MenuItem>
         <MenuItem>Another Item</MenuItem>
+        <Divider />
+        <MenuItem
+          primaryText="Close Menu"
+          onTouchTap={this.props.toggle}
+        />
       </Drawer>
     )
   }

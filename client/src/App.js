@@ -18,19 +18,21 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <Topper />
-          <LeftMenu />
-          { this.props.appState === APPSTATE.WORK &&
-          <AppWork />
-          }
-          { this.props.appState === APPSTATE.DEFAULT &&
-          <AppDefault />
-          }
-          { this.props.appState === APPSTATE.REST &&
-          <AppRest />
-          }
-          { this.props.appState === APPSTATE.BREAK &&
-          <AppBreak />
-          }
+          <div>
+            <LeftMenu />
+            { this.props.appState === APPSTATE.WORK &&
+            <AppWork />
+            }
+            { this.props.appState === APPSTATE.DEFAULT &&
+            <AppDefault />
+            }
+            { this.props.appState === APPSTATE.REST &&
+            <AppRest />
+            }
+            { this.props.appState === APPSTATE.BREAK &&
+            <AppBreak />
+            }
+          </div>
         </div>
       </MuiThemeProvider>
     );
