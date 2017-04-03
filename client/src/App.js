@@ -6,10 +6,7 @@ import { APPSTATE } from "./actions";
 
 import Topper from "./components/Topper";
 import LeftMenu from "./components/LeftMenu";
-import AppDefault from "./views/AppDefault";
-import AppWork from "./views/AppWork";
-import AppRest from "./views/AppRest";
-import AppBreak from "./views/AppBreak";
+import AppState from "./views/AppState";
 
 
 class App extends Component {
@@ -18,21 +15,10 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <Topper />
-          <div>
-            <LeftMenu />
-            { this.props.appState === APPSTATE.WORK &&
-            <AppWork />
-            }
-            { this.props.appState === APPSTATE.DEFAULT &&
-            <AppDefault />
-            }
-            { this.props.appState === APPSTATE.REST &&
-            <AppRest />
-            }
-            { this.props.appState === APPSTATE.BREAK &&
-            <AppBreak />
-            }
-          </div>
+          <LeftMenu />
+          <AppState
+            state={this.props.appState}
+          />  
         </div>
       </MuiThemeProvider>
     );

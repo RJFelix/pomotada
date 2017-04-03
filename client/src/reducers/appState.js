@@ -15,6 +15,9 @@ const reducers = {
   },
   [actions.SET_STATE.BREAK](state, action) {
     return { appState: actions.SET_STATE.BREAK }
+  },
+  [actions.SET_STATE.SETTINGS](state, action) {
+    return { appState: actions.SET_STATE.SETTINGS }
   }
 }
 

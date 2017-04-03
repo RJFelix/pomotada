@@ -33,11 +33,13 @@ class TodoListItemPopover extends React.Component {
   }
 
   render() {
+    // style={this.props.style} passes down MUI internal props
+    // required for IconButton to display properly!
     return (
       <IconButton 
         tooltip="More options"
         onTouchTap={this.handleButtonTouch}
-        {...this.props}
+        style={this.props.style}
       >
         <MoreVert />
         <Popover

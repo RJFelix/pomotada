@@ -105,8 +105,6 @@ export function timerFinished() {
 // to make available to other modules that don't include the actions themselves
 export const APPSTATE = actions.SET_STATE;
 export function setAppState(state) {
-  // temporarily unguarded :(
-  console.log(state);
   return {
     type: state
   }

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import Divider from "material-ui/Divider";
-import { toggleLeftMenu } from "../actions";
+import { toggleLeftMenu, setAppState, APPSTATE } from "../actions";
 
 
 class LeftMenu extends React.Component {
@@ -22,6 +22,16 @@ class LeftMenu extends React.Component {
     }
   }
 
+  handleOpenSettings = () => {
+    this.props.openSettings();
+    this.props.toggle();
+  }
+
+  handleCloseSettings = () => {
+    this.props.closeSettings();
+    this.props.toggle();
+  }
+
   render() {
     return(
       <Drawer
@@ -30,7 +40,18 @@ class LeftMenu extends React.Component {
         open={this.state.open}
         onRequestChange={this.props.toggle}
       >
-        <MenuItem>Item</MenuItem>
+        { !this.props.settingsOpen &&
+        <MenuItem
+          primaryText="Settings"
+          onTouchTap={this.handleOpenSettings}
+        />
+        }
+        { this.props.settingsOpen &&
+        <MenuItem
+          primaryText="Close Settings"
+          onTouchTap={this.handleCloseSettings}
+        />
+        }
         <MenuItem>Another Item</MenuItem>
         <Divider />
         <MenuItem
@@ -44,13 +65,16 @@ class LeftMenu extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    shouldOpen: state.leftMenuOpen
+    shouldOpen: state.leftMenuOpen,
+    settingsOpen: state.appState === APPSTATE.SETTINGS
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    toggle: () => dispatch(toggleLeftMenu())
+    toggle: () => dispatch(toggleLeftMenu()),
+    openSettings: () => dispatch(setAppState(APPSTATE.SETTINGS)),
+    closeSettings: () => dispatch(setAppState(APPSTATE.DEFAULT))
   }
 }
 
