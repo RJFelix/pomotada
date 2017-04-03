@@ -9,13 +9,17 @@ import ArrowUpward from "material-ui/svg-icons/navigation/arrow-upward";
 import ArrowDownward from "material-ui/svg-icons/navigation/arrow-downward";
 import Close from "material-ui/svg-icons/navigation/close";
 import MoreVert from "material-ui/svg-icons/navigation/more-vert";
+import AddStepDialog from "../components/AddStepDialog";
+
+import formatTime from "../util/FormatTime";
 
 class AppSettings extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      program: this.props.currentProgram
+      program: this.props.currentProgram,
+      addStepDialogOpen: false
     }
   }
 
@@ -37,6 +41,18 @@ class AppSettings extends React.Component {
 
   handleOpenOptions = (idx) => {
 
+  }
+
+  handleOpenAddStepDialog = () => {
+    this.setState({
+      addStepDialogOpen: true
+    });
+  }
+
+  handleCloseAddStepDialog = () => {
+    this.setState({
+      addStepDialogOpen: false
+    });
   }
 
   render() {
@@ -89,13 +105,13 @@ class AppSettings extends React.Component {
                       onTouchTap={this.handleOpenOptions(idx)}
                     >
                       <MoreVert />
-                    </IconButton>
+                    </IconButton> 
                     <IconButton
                       tooltip="Move Down"
                       onTouchTap={this.handleMoveDown(idx)}
                     >
                       <ArrowDownward />
-                    </IconButton>
+                    </IconButton> 
                   </TableRowColumn>
                 </TableRow>
               )}
@@ -114,6 +130,14 @@ class AppSettings extends React.Component {
               }
               </TableBody>
             </Table>
+            <RaisedButton
+              label="Add Step"
+              onTouchTap={this.handleOpenAddStepDialog}
+            />
+            <AddStepDialog
+              open={this.state.addStepDialogOpen}
+              onRequestClose={this.handleCloseAddStepDialog}
+            />
             <RaisedButton
             label="Save and return"
             onTouchTap={this.handleSaveProgram}
@@ -152,27 +176,6 @@ function appStateToString(state) {
   }
 
   return state in stateStrings ? stateStrings[state] : `ERROR: state ${state} invalid`;
-}
-
-function formatTime(seconds) {
-  const SECONDS_IN_HOUR = 3600; 
-  const hoursPortion = Math.floor(seconds / SECONDS_IN_HOUR);
-  const secondsLeftOver = seconds - (SECONDS_IN_HOUR * hoursPortion);
-  const minutesPortion = Math.floor(secondsLeftOver / 60);
-  const secondsPortion = seconds % 60;
-
-  const returnString =
-    (hoursPortion > 0 ? hoursPortion + ":" : "") +
-    withLeadingZero(minutesPortion) + ":" +
-    withLeadingZero(secondsPortion);
-
-  return returnString;
-}
-
-function withLeadingZero(num) {
-  return(
-    (num >= 10 ? num : "0" + num).toString()
-  )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppSettings);
