@@ -49,7 +49,7 @@ const initialState = {
   appState: APPSTATE.DEFAULT,
   program: [{
     appState: APPSTATE.WORK,
-    time: 20
+    time: 10
   },
   {
     appState: APPSTATE.REST,
@@ -57,11 +57,11 @@ const initialState = {
   },
   {
     appState: APPSTATE.WORK,
-    time: 20
+    time: 10
   },
   {
     appState: APPSTATE.BREAK,
-    time: 30
+    time: 10
   }],
   currentProgramIndex: 0,
   leftMenuOpen: false

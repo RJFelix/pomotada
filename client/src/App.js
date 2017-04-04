@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   updateWindowHeight = () => {
-    console.log(`Window height: ${window.innerHeight}`);
     this.setState({ windowHeight: window.innerHeight })
   }
   render() {
