@@ -7,28 +7,57 @@ import AppRest from "./AppRest";
 import AppBreak from "./AppBreak";
 import AppSettings from "./AppSettings";
 
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 import "./AppState.css";
 
 export default function AppState(props) {
   return(
-    <Paper
-     className="main-paper"
+    <ReactCSSTransitionGroup
+      transitionName="transition"
+      transitionEnterTimeout={1000}
+      transitionLeaveTimeout={1000}
     >
       { props.state === APPSTATE.WORK &&
-      <AppWork />
+      <Paper
+        className="main-paper"
+        key={APPSTATE.WORK}
+      >
+        <AppWork />
+      </Paper>
       }
       { props.state === APPSTATE.DEFAULT &&
-      <AppDefault />
+      <Paper
+        className="main-paper"
+        key={APPSTATE.DEFAULT}
+      >
+        <AppDefault />
+      </Paper>
       }
       { props.state === APPSTATE.REST &&
-      <AppRest />
+      <Paper
+        className="main-paper"
+        key={APPSTATE.REST}
+      >
+        <AppRest />
+      </Paper>
       }
       { props.state === APPSTATE.BREAK &&
-      <AppBreak />
+      <Paper
+        className="main-paper"
+        key={APPSTATE.BREAK}
+      >
+        <AppBreak />
+      </Paper>
       }
       { props.state === APPSTATE.SETTINGS &&
-      <AppSettings />
+      <Paper
+        className="main-paper"
+        key={APPSTATE.SETTINGS}
+      >
+        <AppSettings />
+      </Paper>
       }
-    </Paper>
+    </ReactCSSTransitionGroup>
   )
 }

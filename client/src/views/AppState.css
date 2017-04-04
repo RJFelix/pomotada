@@ -8,4 +8,41 @@
   .main-paper{
     width: 100%;
   }
+
+  .transition-leave, .transition-enter {
+    left: 0;
+  }
+
+  .transition-leave.transition-leave-active {
+    left: -20vw;
+  }
+}
+
+.transition-enter {
+  transform: translate(100vw);
+  position: absolute;
+  top: 64px;
+  left: 20%;
+}
+
+.transition-enter.transition-enter-active {
+  position: absolute;
+  top: 64px;
+  left: 20%;
+  transform: translate(0%);
+  transition: transform 1000ms ease-in-out;
+}
+
+.transition-leave {
+  position: absolute;
+  top: 64px;
+  left: 20%;
+  transform: translate(0%);
+}
+
+.transition-leave.transition-leave-active {
+  position: absolute;
+  top: 64px;
+  transform: translate(-100vw);
+  transition: transform 1000ms ease-in-out;
 }
