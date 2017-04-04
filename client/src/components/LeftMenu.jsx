@@ -35,10 +35,11 @@ class LeftMenu extends React.Component {
   render() {
     return(
       <Drawer
-        docked={false}
+        docked={true}
         width={400}
         open={this.state.open}
         onRequestChange={this.props.toggle}
+        containerStyle={{position: "absolute", top: "64px"}}
       >
         { !this.props.settingsOpen &&
         <MenuItem
