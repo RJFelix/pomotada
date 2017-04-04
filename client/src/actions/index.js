@@ -131,3 +131,10 @@ export function toggleLeftMenu() {
     type: actions.TOGGLE_LEFT_MENU
   }
 }
+
+export function setProgram(program) {
+  return {
+    type: actions.SET_PROGRAM,
+    program
+  }
+}

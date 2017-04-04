@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
 import { Tabs, Tab } from "material-ui/Tabs";
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from "material-ui/Table"
-import { setAppState, APPSTATE } from "../actions";
+import { setAppState, setProgram, APPSTATE } from "../actions";
 import IconButton from "material-ui/IconButton";
 import ArrowUpward from "material-ui/svg-icons/navigation/arrow-upward";
 import ArrowDownward from "material-ui/svg-icons/navigation/arrow-downward";
@@ -24,6 +24,7 @@ class AppSettings extends React.Component {
   }
 
   handleSaveProgram = () => {
+    this.props.saveProgram(this.state.program);
     this.props.closeSettings();
   }
 
@@ -32,11 +33,23 @@ class AppSettings extends React.Component {
   }
 
   handleMoveUp = (idx) => {
-
+    let newProgram = this.state.program.slice();
+    const itemToMove = newProgram[idx];
+    newProgram[idx] = newProgram[idx - 1];
+    newProgram[idx - 1] = itemToMove;
+    this.setState({
+      program: newProgram
+    });
   }
 
   handleMoveDown = (idx) => {
-
+    let newProgram = this.state.program.slice();
+    const itemToMove = newProgram[idx];
+    newProgram[idx] = newProgram[idx + 1];
+    newProgram[idx + 1] = itemToMove;
+    this.setState({
+      program: newProgram
+    });
   }
 
   handleOpenOptions = (idx) => {
@@ -52,6 +65,12 @@ class AppSettings extends React.Component {
   handleCloseAddStepDialog = () => {
     this.setState({
       addStepDialogOpen: false
+    });
+  }
+
+  handleAddStepDialogSubmit = (step) => {
+    this.setState({
+      program: this.state.program.concat(new Array(step))
     });
   }
 
@@ -96,19 +115,19 @@ class AppSettings extends React.Component {
                   <TableRowColumn>
                     <IconButton
                       tooltip="Move Up"
-                      onTouchTap={this.handleMoveUp(idx)}
+                      onTouchTap={() => this.handleMoveUp(idx)}
                     >
                       <ArrowUpward />
                     </IconButton>
                     <IconButton
                       tooltip="Options"
-                      onTouchTap={this.handleOpenOptions(idx)}
+                      onTouchTap={() => this.handleOpenOptions(idx)}
                     >
                       <MoreVert />
                     </IconButton> 
                     <IconButton
                       tooltip="Move Down"
-                      onTouchTap={this.handleMoveDown(idx)}
+                      onTouchTap={() => this.handleMoveDown(idx)}
                     >
                       <ArrowDownward />
                     </IconButton> 
@@ -137,6 +156,7 @@ class AppSettings extends React.Component {
             <AddStepDialog
               open={this.state.addStepDialogOpen}
               onRequestClose={this.handleCloseAddStepDialog}
+              onAddStep={this.handleAddStepDialogSubmit}
             />
             <RaisedButton
             label="Save and return"
@@ -157,7 +177,8 @@ class AppSettings extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    closeSettings: () => dispatch(setAppState(APPSTATE.DEFAULT))
+    closeSettings: () => dispatch(setAppState(APPSTATE.DEFAULT)),
+    saveProgram: (program) => dispatch(setProgram(program))
   }
 }
 

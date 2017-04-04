@@ -38,7 +38,12 @@ class AddStepDialog extends React.Component {
   }
 
   handleSubmit = () => {
-    
+    this.props.onAddStep({
+      appState: this.state.typeDropdownValue,
+      time: this.state.durationValue,
+      category: this.state.categoryDropdownValue,
+      todo: this.state.todoDropdownValue
+    });
     this.setState(this.initialState);
     this.props.onRequestClose();
   }
@@ -115,10 +120,6 @@ class AddStepDialog extends React.Component {
             <MenuItem
               value={APPSTATE.BREAK}
               primaryText="Long break"
-            />
-            <MenuItem
-              value={APPSTATE.TIMER}
-              primaryText="Custom timer"
             />
             <MenuItem
               value={APPSTATE.DEFAULT}
