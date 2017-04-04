@@ -14,6 +14,10 @@
   }
 }
 
+/* Material-UI adds some unwanted transition effects,
+   hence !important everywhere.
+*/
+
 .transition-enter {
   transform: translate(500vw)!important;
   /*position: absolute;
