@@ -54,11 +54,6 @@ class LeftMenu extends React.Component {
         />
         }
         <MenuItem>Another Item</MenuItem>
-        <Divider />
-        <MenuItem
-          primaryText="Close Menu"
-          onTouchTap={this.props.toggle}
-        />
       </Drawer>
     )
   }

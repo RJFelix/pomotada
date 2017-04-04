@@ -5,13 +5,80 @@ import { Tabs, Tab } from "material-ui/Tabs";
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from "material-ui/Table"
 import { setAppState, setProgram, APPSTATE } from "../actions";
 import IconButton from "material-ui/IconButton";
-import ArrowUpward from "material-ui/svg-icons/navigation/arrow-upward";
-import ArrowDownward from "material-ui/svg-icons/navigation/arrow-downward";
 import Close from "material-ui/svg-icons/navigation/close";
 import MoreVert from "material-ui/svg-icons/navigation/more-vert";
+import Reorder from "material-ui/svg-icons/action/reorder";
+
 import AddStepDialog from "../components/AddStepDialog";
 
+import { SortableContainer, SortableElement, SortableHandle, arrayMove } from "react-sortable-hoc";
+
 import formatTime from "../util/FormatTime";
+
+const DragHandle = SortableHandle(() => <Reorder />);
+
+const SortableProgramRow = SortableElement(({step, idx, handlers}) => {
+  return(
+    <TableRow
+      key={idx}
+    >
+      <TableRowColumn>
+        {appStateToString(step.appState)}
+      </TableRowColumn>
+      <TableRowColumn>
+        {step.time > 0 ? formatTime(step.time) : "---"}
+      </TableRowColumn>
+      <TableRowColumn>
+        { step.appState === APPSTATE.WORK ? "TBD" : "---"}
+      </TableRowColumn>
+      <TableRowColumn>
+        <IconButton
+          tooltip="Options"
+          onTouchTap={() => handlers.handleOpenOptions(idx)}
+        >
+          <MoreVert />
+        </IconButton> 
+        <DragHandle /> 
+      </TableRowColumn>
+    </TableRow>
+  )
+});
+
+const SortableProgramTable = SortableContainer(({program, handlers}) => {
+  return(
+    <Table selectable={false}>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderColumn>
+            Status
+          </TableHeaderColumn>
+          <TableHeaderColumn>
+            Duration
+          </TableHeaderColumn>
+          <TableHeaderColumn>
+            Task
+          </TableHeaderColumn>
+          <TableHeaderColumn>
+            Actions
+          </TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {program.map((step, idx) => 
+          <SortableProgramRow
+            key={idx}
+            idx={idx}
+            handlers={handlers}
+            index={idx}
+            step={step}
+          />
+        )}
+      </TableBody>
+    </Table>
+  )
+});
+
+
 
 class AppSettings extends React.Component {
 
@@ -30,26 +97,6 @@ class AppSettings extends React.Component {
 
   handleSaveGeneral = () => {
     this.props.closeSettings();
-  }
-
-  handleMoveUp = (idx) => {
-    let newProgram = this.state.program.slice();
-    const itemToMove = newProgram[idx];
-    newProgram[idx] = newProgram[idx - 1];
-    newProgram[idx - 1] = itemToMove;
-    this.setState({
-      program: newProgram
-    });
-  }
-
-  handleMoveDown = (idx) => {
-    let newProgram = this.state.program.slice();
-    const itemToMove = newProgram[idx];
-    newProgram[idx] = newProgram[idx + 1];
-    newProgram[idx + 1] = itemToMove;
-    this.setState({
-      program: newProgram
-    });
   }
 
   handleOpenOptions = (idx) => {
@@ -74,81 +121,29 @@ class AppSettings extends React.Component {
     });
   }
 
+  onSortEnd = ({oldIndex, newIndex}) => {
+    let newProgram = this.state.program;
+    this.setState({
+      program: arrayMove(newProgram, oldIndex, newIndex)
+    });
+  }
+
   render() {
+    console.log(JSON.stringify(this.state.program));
     return(
       <div>
         <Tabs>
           <Tab label="Program">
-            <Table
-              selectable={false}
-            >
-              <TableHeader>
-                <TableRow>
-                  <TableHeaderColumn>
-                    Status
-                  </TableHeaderColumn>
-                  <TableHeaderColumn>
-                    Duration
-                  </TableHeaderColumn>
-                  <TableHeaderColumn>
-                    Task
-                  </TableHeaderColumn>
-                  <TableHeaderColumn>
-                    Actions
-                  </TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-              {this.state.program.map((step, idx) => 
-                <TableRow
-                  key={idx}
-                >
-                  <TableRowColumn>
-                    {appStateToString(step.appState)}
-                  </TableRowColumn>
-                  <TableRowColumn>
-                    {step.time > 0 ? formatTime(step.time) : "---"}
-                  </TableRowColumn>
-                  <TableRowColumn>
-                    { step.appState === APPSTATE.WORK ? "TBD" : "---"}
-                  </TableRowColumn>
-                  <TableRowColumn>
-                    <IconButton
-                      tooltip="Move Up"
-                      onTouchTap={() => this.handleMoveUp(idx)}
-                    >
-                      <ArrowUpward />
-                    </IconButton>
-                    <IconButton
-                      tooltip="Options"
-                      onTouchTap={() => this.handleOpenOptions(idx)}
-                    >
-                      <MoreVert />
-                    </IconButton> 
-                    <IconButton
-                      tooltip="Move Down"
-                      onTouchTap={() => this.handleMoveDown(idx)}
-                    >
-                      <ArrowDownward />
-                    </IconButton> 
-                  </TableRowColumn>
-                </TableRow>
-              )}
-              {this.state.program[this.state.program.length - 1].appState !== APPSTATE.DEFAULT &&
-                <TableRow>
-                  <TableRowColumn>
-                    Repeat from the beginning
-                  </TableRowColumn>
-                  <TableRowColumn>
-                    ---
-                  </TableRowColumn>
-                  <TableRowColumn>
-                    ---
-                  </TableRowColumn>
-                </TableRow>
-              }
-              </TableBody>
-            </Table>
+            <SortableProgramTable
+              program={this.state.program}
+              handlers={{
+                handleMoveUp: this.handleMoveUp,
+                handleOpenOptions: this.handleOpenOptions,
+                handleMoveDown: this.handleMoveDown
+              }}
+              onSortEnd={this.onSortEnd}
+              useDragHandle={true}
+            />
             <RaisedButton
               label="Add Step"
               onTouchTap={this.handleOpenAddStepDialog}
