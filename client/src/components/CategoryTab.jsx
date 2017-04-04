@@ -19,18 +19,22 @@ function CategoryTab(props) {
           key={category.id}
           onActive={() => props.setActiveCategory(category.id)}
         >
-          <TodoList
-            todos={props.todos.filter((todo) => todo.category === category.id)}
-          />
-          <RemoveCategory
-            category={category}
-          />
+          <div className="content">
+            <TodoList
+              todos={props.todos.filter((todo) => todo.category === category.id)}
+            />
+            <RemoveCategory
+              category={category}
+            />
+          </div>
         </Tab>
       )}
       <Tab
         icon={<Add />}
       >
-        <AddCategory />
+        <div className="content">
+          <AddCategory />
+        </div>
       </Tab>
     </Tabs>
   )

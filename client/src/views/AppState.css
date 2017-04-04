@@ -1,0 +1,11 @@
+.main-paper {
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 16px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .main-paper{
+    width: 100%;
+  }
+}

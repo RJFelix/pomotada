@@ -4,7 +4,6 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
-import TextField from "material-ui/TextField";
 
 import DurationField from "./DurationField";
 import { APPSTATE } from "../actions";

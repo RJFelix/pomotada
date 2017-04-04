@@ -4,7 +4,9 @@ import CategoryTab from "../components/CategoryTab";
 
 export default function AppRest(props) {
   return(
-    <div>
+    <div
+      className="content no-tabs"
+    >
       <Timer />
       <p>Select your next task!</p>
       <CategoryTab />

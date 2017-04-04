@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { connect } from "react-redux";
-import { APPSTATE } from "./actions";
 
 import Topper from "./components/Topper";
 import LeftMenu from "./components/LeftMenu";
@@ -10,12 +9,34 @@ import AppState from "./views/AppState";
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      windowHeight: 0
+    };
+  }
+
+  componentDidMount() {
+    this.updateWindowHeight();
+    window.addEventListener("resize", this.updateWindowHeight);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowHeight);
+  }
+
+  updateWindowHeight = () => {
+    console.log(`Window height: ${window.innerHeight}`);
+    this.setState({ windowHeight: window.innerHeight })
+  }
   render() {
     return (
       <MuiThemeProvider>
         <div>
           <Topper />
-          <LeftMenu />
+          <LeftMenu
+            windowHeight={this.state.windowHeight}
+           />
           <AppState
             state={this.props.appState}
           />  

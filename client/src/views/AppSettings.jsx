@@ -5,7 +5,6 @@ import { Tabs, Tab } from "material-ui/Tabs";
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from "material-ui/Table"
 import { setAppState, setProgram, APPSTATE } from "../actions";
 import IconButton from "material-ui/IconButton";
-import Close from "material-ui/svg-icons/navigation/close";
 import MoreVert from "material-ui/svg-icons/navigation/more-vert";
 import Reorder from "material-ui/svg-icons/action/reorder";
 
@@ -134,35 +133,40 @@ class AppSettings extends React.Component {
       <div>
         <Tabs>
           <Tab label="Program">
-            <SortableProgramTable
-              program={this.state.program}
-              handlers={{
-                handleMoveUp: this.handleMoveUp,
-                handleOpenOptions: this.handleOpenOptions,
-                handleMoveDown: this.handleMoveDown
-              }}
-              onSortEnd={this.onSortEnd}
-              useDragHandle={true}
-            />
-            <RaisedButton
-              label="Add Step"
-              onTouchTap={this.handleOpenAddStepDialog}
-            />
-            <AddStepDialog
-              open={this.state.addStepDialogOpen}
-              onRequestClose={this.handleCloseAddStepDialog}
-              onAddStep={this.handleAddStepDialogSubmit}
-            />
-            <RaisedButton
-            label="Save and return"
-            onTouchTap={this.handleSaveProgram}
-            />   
+            <div className="content">
+              <SortableProgramTable
+                program={this.state.program}
+                handlers={{
+                  handleMoveUp: this.handleMoveUp,
+                  handleOpenOptions: this.handleOpenOptions,
+                  handleMoveDown: this.handleMoveDown
+                }}
+                onSortEnd={this.onSortEnd}
+                useDragHandle={true}
+              />
+              <RaisedButton
+                label="Add Step"
+                onTouchTap={this.handleOpenAddStepDialog}
+              />
+              <AddStepDialog
+                open={this.state.addStepDialogOpen}
+                onRequestClose={this.handleCloseAddStepDialog}
+                onAddStep={this.handleAddStepDialogSubmit}
+              />
+              <RaisedButton
+              label="Save and return"
+              onTouchTap={this.handleSaveProgram}
+              />
+            </div>   
           </Tab>
           <Tab label="General">
-            <RaisedButton
-            label="Save and return"
-            onTouchTap={this.handleSaveGeneral}
-            />
+            <div className="content">
+              <p>No more settings... yet.</p>
+              <RaisedButton
+              label="Save and return"
+              onTouchTap={this.handleSaveGeneral}
+              />
+            </div>
           </Tab>
         </Tabs>
       </div>

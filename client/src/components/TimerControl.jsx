@@ -5,6 +5,7 @@ import PlayArrow from "material-ui/svg-icons/av/play-arrow";
 import Pause from "material-ui/svg-icons/av/pause";
 import Stop from "material-ui/svg-icons/av/stop";
 import FastForward from "material-ui/svg-icons/av/fast-forward";
+import IconButton from "material-ui/IconButton";
 
 function TimerControl(props) {
   return(
@@ -12,28 +13,43 @@ function TimerControl(props) {
       {props.isRunning && 
         <span>
           {!props.isPaused &&
-          <Pause
-            onClick={props.pauseTimer}
-          />
+          <IconButton
+            tooltip="Pause Timer"
+            onTouchTap={props.pauseTimer}
+          >
+            <Pause />
+          </IconButton>
           }
           {props.isPaused &&
-          <PlayArrow
-            onClick={props.startTimer}
-          />
+          <IconButton
+            tooltip="Start Timer"
+            onTouchTap={props.startTimer}
+          >
+            <PlayArrow />
+          </IconButton>
           }
-          <Stop
-            onClick={props.stopTimer}
-          />
+          <IconButton
+            tooltip="End timer"
+            onTouchTap={props.stopTimer}
+          >
+            <Stop />
+          </IconButton>
         </span>      
       }
       {!props.isRunning &&
-        <PlayArrow
-          onClick={props.startTimer}
-        />
+        <IconButton
+          tooltip="Start timer"
+          onTouchTap={props.startTimer}
+        >
+          <PlayArrow />
+        </IconButton>
       }
-      <FastForward
-        onClick={props.finishTimer}
-      />
+      <IconButton
+        tooltip="Skip to next step"
+        onTouchTap={props.finishTimer}
+      >
+        <FastForward />
+      </IconButton>
     </div>
   )
 }

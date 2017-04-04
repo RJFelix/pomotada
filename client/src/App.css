@@ -1,0 +1,7 @@
+.content {
+  padding: 0 16px;
+}
+
+.content.no-tabs {
+  padding-top: 16px;
+}

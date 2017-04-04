@@ -1,11 +1,13 @@
 import React from "react";
 import Timer from "../components/Timer";
 import { connect } from "react-redux";
-import { stopTimer, setAppState, APPSTATE } from "../actions";
+import { stopTimer } from "../actions";
 
 function AppWork(props) {
   return(
-    <div>
+    <div
+      className="content no-tabs"
+    >
       <p>{props.activeTask}</p>
       <Timer />
     </div>

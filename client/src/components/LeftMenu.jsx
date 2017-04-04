@@ -33,13 +33,14 @@ class LeftMenu extends React.Component {
   }
 
   render() {
+    const drawerHeight = `${this.props.windowHeight - 64}px`;
     return(
       <Drawer
         docked={true}
-        width={400}
+        width={300}
         open={this.state.open}
         onRequestChange={this.props.toggle}
-        containerStyle={{position: "absolute", top: "64px"}}
+        containerStyle={{position: "absolute", top: "64px", height: drawerHeight }}
       >
         { !this.props.settingsOpen &&
         <MenuItem

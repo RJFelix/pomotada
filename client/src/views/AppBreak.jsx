@@ -3,7 +3,9 @@ import Timer from "../components/Timer";
 
 export default function AppBreak(props) {
   return(
-    <div>
+    <div
+      className="content no-tabs"
+    >
       <Timer />
       <p>Take a break - you've earned it!</p>
     </div>

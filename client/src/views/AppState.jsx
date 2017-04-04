@@ -7,9 +7,13 @@ import AppRest from "./AppRest";
 import AppBreak from "./AppBreak";
 import AppSettings from "./AppSettings";
 
+import "./AppState.css";
+
 export default function AppState(props) {
   return(
-    <Paper>
+    <Paper
+     className="main-paper"
+    >
       { props.state === APPSTATE.WORK &&
       <AppWork />
       }

@@ -1,4 +1,4 @@
-import { APPSTATE, SETTINGS } from "../actions";
+import { APPSTATE } from "../actions";
 
 const initialState = {
   categories: [{

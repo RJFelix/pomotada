@@ -2,16 +2,18 @@ import React from "react";
 import CategoryTab from "../components/CategoryTab";
 import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
-import { startTimer, setAppState, APPSTATE } from "../actions";
+import { startTimer } from "../actions";
 
 function AppDefault(props) {
   return(
-    <div>
+    <div
+      className="paper-interior"
+    >
+      <CategoryTab />
       <RaisedButton
-        label="Work"
+        label="Start Work"
         onTouchTap={props.startWork}
       />
-      <CategoryTab />
     </div>
   )
 }
