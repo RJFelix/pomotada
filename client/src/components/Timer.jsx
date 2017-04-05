@@ -69,16 +69,34 @@ class Timer extends React.Component {
 
   render() {
     return(
-      <div>
-        <h1>
-          {formatTime(this.state.secondsRemaining)}
-        </h1>
+      <div
+        style={{
+          margin: "0 auto",
+          width: "200px"
+        }}
+      >
         <CuteTimer
           time={this.props.assignedTime}
           running={this.props.shouldRun}
           finish={false}
+          formattedTime={formatTime(this.state.secondsRemaining)}
+          paused={this.props.shouldPause}
          />
-        <TimerControl />
+         <div
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+          >
+          <div
+            style={{
+              margin: "0",
+              flex: "1 1 content"
+            }}
+            >
+              <TimerControl />
+            </div>
+          </div>
       </div>
     );
   }
