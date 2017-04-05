@@ -51,9 +51,11 @@ class AddTodo extends React.Component {
       </TextField>
       <RaisedButton
         label="Add Item"
-        primary={true}
         icon={<ContentAdd />}
         onTouchTap={this.handleButton}
+        style={{
+          marginLeft: "24px"
+        }}
       >
       </RaisedButton>
     </div>

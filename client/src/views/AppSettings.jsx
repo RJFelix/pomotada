@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import RaisedButton from "material-ui/RaisedButton";
+import FlatButton from "material-ui/RaisedButton";
 import { Tabs, Tab } from "material-ui/Tabs";
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from "material-ui/Table"
 import { setAppState, setProgram, APPSTATE } from "../actions";
@@ -59,13 +59,25 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
       <TableRowColumn>
         {appStateToString(step.appState)}
       </TableRowColumn>
-      <TableRowColumn>
+      <TableRowColumn
+        style={{
+          width: "15%"
+        }}
+      >
         {step.time > 0 ? formatTime(step.time) : "---"}
       </TableRowColumn>
-      <TableRowColumn>
+      <TableRowColumn
+        style={{
+          width: "50%"
+        }}
+      >
         { step.appState === APPSTATE.WORK ? taskText() : "---"}
       </TableRowColumn>
-      <TableRowColumn>
+      <TableRowColumn
+        style={{
+          width: "15%"
+        }}
+      >
         <IconButton
           tooltip="Options"
           onTouchTap={() => handlers.handleOpenOptions(idx)}
@@ -86,13 +98,25 @@ const SortableProgramTable = SortableContainer(({program, handlers, categories, 
           <TableHeaderColumn>
             Status
           </TableHeaderColumn>
-          <TableHeaderColumn>
+          <TableHeaderColumn
+            style={{
+              width: "15%"
+            }}
+          >
             Duration
           </TableHeaderColumn>
-          <TableHeaderColumn>
+          <TableHeaderColumn
+            style={{
+              width: "50%"
+            }}
+          >
             Task
           </TableHeaderColumn>
-          <TableHeaderColumn>
+          <TableHeaderColumn
+            style={{
+              width: "15%"
+            }}
+          >
             Actions
           </TableHeaderColumn>
         </TableRow>
@@ -182,25 +206,32 @@ class AppSettings extends React.Component {
                 onSortEnd={this.onSortEnd}
                 useDragHandle={true}
               />
-              <RaisedButton
-                label="Add Step"
-                onTouchTap={this.handleOpenAddStepDialog}
-              />
-              <AddStepDialog
-                open={this.state.addStepDialogOpen}
-                onRequestClose={this.handleCloseAddStepDialog}
-                onAddStep={this.handleAddStepDialogSubmit}
-              />
-              <RaisedButton
-              label="Save and return"
-              onTouchTap={this.handleSaveProgram}
-              />
+              <div
+                style={{
+                  paddingTop: "24px"
+                }}
+              >
+                <FlatButton
+                label="Save and return"
+                onTouchTap={this.handleSaveProgram}
+                primary={true}
+                />
+                <FlatButton
+                  label="Add Step"
+                  onTouchTap={this.handleOpenAddStepDialog}
+                />
+                <AddStepDialog
+                  open={this.state.addStepDialogOpen}
+                  onRequestClose={this.handleCloseAddStepDialog}
+                  onAddStep={this.handleAddStepDialogSubmit}
+                />                
+              </div>
             </div>   
           </Tab>
           <Tab label="General">
             <div className="content">
               <p>No more settings... yet.</p>
-              <RaisedButton
+              <FlatButton
               label="Save and return"
               onTouchTap={this.handleSaveGeneral}
               />

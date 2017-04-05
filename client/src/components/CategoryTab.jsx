@@ -34,9 +34,6 @@ function CategoryTab(props) {
                 primary={true}
                 label="Begin"
               />
-              <RemoveCategory
-                category={category}
-              />
             </div>
           </div>
         </Tab>

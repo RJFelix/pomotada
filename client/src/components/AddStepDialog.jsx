@@ -92,6 +92,7 @@ class AddStepDialog extends React.Component {
         modal={false}
         actions={actions}
         onRequestClose={this.handleRequestClose}
+        autoScrollBodyContent={true}
       >
         <div
           className="dialog-row"

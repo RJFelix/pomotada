@@ -4,7 +4,7 @@
   padding-bottom: 16px;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 800px) {
   .main-paper{
     width: 100%;
   }
@@ -30,7 +30,7 @@
   top: 64px;
   left: 20%;*/
   transform: translate(0%)!important;
-  transition: transform 1000ms ease-in-out !important;
+  transition: transform 400ms ease-in-out !important;
 }
 
 .transition-leave {
@@ -44,5 +44,5 @@
   /*position: absolute;
   top: 64px;*/
   transform: translate(-100vw)!important;
-  transition: transform 1000ms ease-in-out !important;
+  transition: transform 400ms ease-in-out !important;
 }

@@ -15,8 +15,8 @@ export default function AppState(props) {
   return(
     <ReactCSSTransitionGroup
       transitionName="transition"
-      transitionEnterTimeout={1000}
-      transitionLeaveTimeout={1000}
+      transitionEnterTimeout={400}
+      transitionLeaveTimeout={400}
     >
       { props.state === APPSTATE.WORK &&
       <Paper
