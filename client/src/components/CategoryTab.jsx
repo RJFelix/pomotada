@@ -2,10 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { Tabs, Tab } from "material-ui-scrollable-tabs/Tabs";
 import TodoList from "./TodoList";
-import { setActiveCategory } from "../actions";
+import { setActiveCategory, startTimer } from "../actions";
 import AddCategory from "./AddCategory";
 import Add from "material-ui/svg-icons/content/add";
 import RemoveCategory from "./RemoveCategory";
+import RaisedButton from "material-ui/RaisedButton";
 
 function CategoryTab(props) {
   return (
@@ -23,9 +24,20 @@ function CategoryTab(props) {
             <TodoList
               todos={props.todos.filter((todo) => todo.category === category.id)}
             />
-            <RemoveCategory
-              category={category}
-            />
+            <div
+              style={{
+                marginTop: "24px"
+              }}
+            >
+              <RaisedButton
+                onTouchTap={props.startWork}
+                primary={true}
+                label="Begin"
+              />
+              <RemoveCategory
+                category={category}
+              />
+            </div>
           </div>
         </Tab>
       )}
@@ -49,7 +61,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setActiveCategory: (id) => dispatch(setActiveCategory(id))
+    setActiveCategory: (id) => dispatch(setActiveCategory(id)),
+    startWork: () => {
+      dispatch(startTimer());
+    }
   }
 }
 

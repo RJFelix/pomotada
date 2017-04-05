@@ -70,7 +70,7 @@ class Timer extends React.Component {
     return(
       <div>
         <h1>
-          {(this.state.isRunning && formatTime(this.state.secondsRemaining)) || "Timer stopped."}
+          {formatTime(this.state.secondsRemaining)}
         </h1>
         <TimerControl />
       </div>
