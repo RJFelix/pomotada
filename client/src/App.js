@@ -7,6 +7,10 @@ import Topper from "./components/Topper";
 import LeftMenu from "./components/LeftMenu";
 import AppState from "./views/AppState";
 
+import Theme from "./themes/default";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+
+const appTheme = getMuiTheme(Theme);
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +34,7 @@ class App extends Component {
   }
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={appTheme}>
         <div>
           <Topper />
           <LeftMenu

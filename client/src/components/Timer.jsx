@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { timerFinished } from "../actions";
 import TimerControl from "./TimerControl";
+import CuteTimer from "./CuteTimer";
 
 class Timer extends React.Component {
   constructor(props) {
@@ -72,6 +73,11 @@ class Timer extends React.Component {
         <h1>
           {formatTime(this.state.secondsRemaining)}
         </h1>
+        <CuteTimer
+          time={this.props.assignedTime}
+          running={this.props.shouldRun}
+          finish={false}
+         />
         <TimerControl />
       </div>
     );
