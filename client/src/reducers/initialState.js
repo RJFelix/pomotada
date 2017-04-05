@@ -49,7 +49,7 @@ const initialState = {
   appState: APPSTATE.DEFAULT,
   program: [{
     appState: APPSTATE.WORK,
-    time: 10,
+    time: 7322,
     category: null,
     todo: 3
   },

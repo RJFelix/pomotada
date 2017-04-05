@@ -14,14 +14,16 @@ import { SortableContainer, SortableElement, SortableHandle, arrayMove } from "r
 
 import formatTime from "../util/FormatTime";
 
-const DragHandle = SortableHandle(() => <Reorder />);
+import "./AppSettings.css";
+
+const DragHandle = SortableHandle(() => <Reorder className="reorder"/>);
 
 const SortableProgramRow = SortableElement(({step, idx, handlers, categories, todos}) => {
 
   // builds string in format [category]: [task]
   const taskText = () => {
     let categoryPortion, todoPortion;
-    if(step.todo) {
+    if((typeof step.todo !== typeof undefined)) {
       if(typeof step.todo === typeof 1) {
         const thisTodo = todos.find(todo => step.todo === todo.id);
         todoPortion = `${thisTodo.text}`;
@@ -49,7 +51,7 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
     }
     return `${categoryPortion}: ${todoPortion}`;
   }
-
+  console.log(`Step ${idx}: time is ${step.time}`);
   return(
     <TableRow
       key={idx}
@@ -79,7 +81,7 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
 const SortableProgramTable = SortableContainer(({program, handlers, categories, todos}) => {
   return(
     <Table selectable={false}>
-      <TableHeader>
+      <TableHeader displaySelectAll={false} enableSelectAll={false} adjustForCheckbox={false}>
         <TableRow>
           <TableHeaderColumn>
             Status
@@ -163,7 +165,6 @@ class AppSettings extends React.Component {
   }
 
   render() {
-    console.log(JSON.stringify(this.state.program));
     return(
       <div>
         <Tabs>
