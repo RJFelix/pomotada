@@ -16,7 +16,40 @@ import formatTime from "../util/FormatTime";
 
 const DragHandle = SortableHandle(() => <Reorder />);
 
-const SortableProgramRow = SortableElement(({step, idx, handlers}) => {
+const SortableProgramRow = SortableElement(({step, idx, handlers, categories, todos}) => {
+
+  const taskText = () => {
+    let categoryPortion, todoPortion;
+    if(step.todo) {
+      if(typeof step.todo === typeof 1) {
+        const thisTodo = todos.find(todo => step.todo === todo.id);
+        todoPortion = `${thisTodo.text}`;
+        categoryPortion = `${categories.find(cat => cat.id === thisTodo.category).title}`;
+      } else if(step.todo === APPSTATE.TASK.FIRST) {
+        todoPortion = "First open task";
+      } else if(step.todo === APPSTATE.TASK.RANDOM) {
+        todoPortion = "Random task";
+      } else if(step.todo === APPSTATE.TASK.SELECT) {
+        todoPortion = "Select a task";
+      }
+    } else {
+      todoPortion = "---";
+    }
+    if(!categoryPortion && (typeof step.category === typeof 1)) {
+      if(typeof step.category === typeof 1) {
+        categoryPortion = `${categories.find(cat => step.category === cat.id).title}`;
+      } else if(step.category === APPSTATE.TASK.ANY) {
+        categoryPortion = "Any category";
+      } else if(step.category === APPSTATE.TASK.RANDOM) {
+        categoryPortion = "Random category";
+      }
+    } else {
+      categoryPortion = categoryPortion || "---";
+    }
+
+    return `${categoryPortion}: ${todoPortion}`;
+  }
+
   return(
     <TableRow
       key={idx}
@@ -28,7 +61,7 @@ const SortableProgramRow = SortableElement(({step, idx, handlers}) => {
         {step.time > 0 ? formatTime(step.time) : "---"}
       </TableRowColumn>
       <TableRowColumn>
-        { step.appState === APPSTATE.WORK ? "TBD" : "---"}
+        { step.appState === APPSTATE.WORK ? taskText() : "---"}
       </TableRowColumn>
       <TableRowColumn>
         <IconButton
@@ -43,7 +76,7 @@ const SortableProgramRow = SortableElement(({step, idx, handlers}) => {
   )
 });
 
-const SortableProgramTable = SortableContainer(({program, handlers}) => {
+const SortableProgramTable = SortableContainer(({program, handlers, categories, todos}) => {
   return(
     <Table selectable={false}>
       <TableHeader>
@@ -70,6 +103,8 @@ const SortableProgramTable = SortableContainer(({program, handlers}) => {
             handlers={handlers}
             index={idx}
             step={step}
+            categories={categories}
+            todos={todos}
           />
         )}
       </TableBody>
@@ -141,6 +176,8 @@ class AppSettings extends React.Component {
                   handleOpenOptions: this.handleOpenOptions,
                   handleMoveDown: this.handleMoveDown
                 }}
+                categories={this.props.categories}
+                todos={this.props.todos}
                 onSortEnd={this.onSortEnd}
                 useDragHandle={true}
               />
@@ -183,7 +220,9 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    currentProgram: state.program
+    currentProgram: state.program,
+    categories: state.categories,
+    todos: state.todos
   }
 }
 

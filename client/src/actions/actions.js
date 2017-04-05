@@ -20,7 +20,16 @@ const actions = {
     REST: "STATE_REST",
     BREAK: "STATE_BREAK",
     SETTINGS: "STATE_SETTINGS",
-    TIMER: "STATE_TIMER"
+
+    // state constants
+    //   not really actions but it makes
+    //   some sense for them to be here
+    TASK: {
+      ANY: "TASK_ANY",
+      FIRST: "TASK_FIRST",
+      RANDOM: "TASK_RANDOM",
+      SELECT: "TASK_SELECT"
+    }
   },
   SET_SETTING: {
     WORK_TIME: "SET_WORK_TIME",

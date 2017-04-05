@@ -49,7 +49,9 @@ const initialState = {
   appState: APPSTATE.DEFAULT,
   program: [{
     appState: APPSTATE.WORK,
-    time: 10
+    time: 10,
+    category: null,
+    todo: 3
   },
   {
     appState: APPSTATE.REST,
@@ -57,11 +59,19 @@ const initialState = {
   },
   {
     appState: APPSTATE.WORK,
-    time: 10
+    time: 10,
+    category: 1,
+    todo: APPSTATE.TASK.SELECT
   },
   {
     appState: APPSTATE.BREAK,
     time: 10
+  },
+  {
+    appState: APPSTATE.WORK,
+    time: 10,
+    category: 0,
+    todo: APPSTATE.TASK.RANDOM
   }],
   currentProgramIndex: 0,
   leftMenuOpen: false
