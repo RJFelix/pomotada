@@ -4,6 +4,7 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
+import Divider from "material-ui/Divider";
 
 import DurationField from "./DurationField";
 import { APPSTATE } from "../actions";
@@ -164,6 +165,11 @@ class AddStepDialog extends React.Component {
               value={this.state.categoryDropdownValue}
               onChange={this.handleCategoryDropdownChange}
             >
+              <MenuItem
+                value={APPSTATE.TASK.ANY}
+                primaryText="Any category"
+              />
+              <Divider />
               { this.props.categories.map((cat) =>
                 <MenuItem
                   key={cat.id}
@@ -189,6 +195,15 @@ class AddStepDialog extends React.Component {
               value={this.state.todoDropdownValue}
               onChange={this.handleTodoDropdownChange}
             >
+              <MenuItem
+                value={APPSTATE.TASK.RANDOM}
+                primaryText="Random task"
+              />
+              <MenuItem
+                value={APPSTATE.TASK.SELECT}
+                primaryText="Select task later"
+              />
+              <Divider />
               { this.props.todos.filter((todo) => (todo.category === this.state.categoryDropdownValue) && !todo.finished).map((todo) =>
                 <MenuItem
                   key={todo.id}

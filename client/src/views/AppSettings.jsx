@@ -18,6 +18,7 @@ const DragHandle = SortableHandle(() => <Reorder />);
 
 const SortableProgramRow = SortableElement(({step, idx, handlers, categories, todos}) => {
 
+  // builds string in format [category]: [task]
   const taskText = () => {
     let categoryPortion, todoPortion;
     if(step.todo) {
@@ -35,7 +36,7 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
     } else {
       todoPortion = "---";
     }
-    if(!categoryPortion && (typeof step.category === typeof 1)) {
+    if(!categoryPortion && (typeof step.category !== typeof undefined)) {
       if(typeof step.category === typeof 1) {
         categoryPortion = `${categories.find(cat => step.category === cat.id).title}`;
       } else if(step.category === APPSTATE.TASK.ANY) {
@@ -46,7 +47,6 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
     } else {
       categoryPortion = categoryPortion || "---";
     }
-
     return `${categoryPortion}: ${todoPortion}`;
   }
 
