@@ -11,6 +11,7 @@
 
   .transition-leave {
     left: 0;
+    z-index: -1!important;
   }
 }
 
@@ -41,7 +42,6 @@
   top: 64px;
   left: 20%;
   transform: translate(0%)!important;
-  z-index: -1!important;
 }
 
 .transition-leave.transition-leave-active {
