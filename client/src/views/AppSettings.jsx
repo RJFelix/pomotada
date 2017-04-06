@@ -75,7 +75,8 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
       </TableRowColumn>
       <TableRowColumn
         style={{
-          width: "15%"
+          width: "15%",
+          paddingLeft: "0"
         }}
       >
         <IconButton
