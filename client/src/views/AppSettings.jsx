@@ -7,6 +7,8 @@ import { setAppState, setProgram, APPSTATE } from "../actions";
 import IconButton from "material-ui/IconButton";
 import MoreVert from "material-ui/svg-icons/navigation/more-vert";
 import Reorder from "material-ui/svg-icons/action/reorder";
+import AddBox from "material-ui/svg-icons/content/add-box";
+import { indigo400 } from "material-ui/styles/colors";
 
 import AddStepDialog from "../components/AddStepDialog";
 
@@ -51,7 +53,6 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
     }
     return `${categoryPortion}: ${todoPortion}`;
   }
-  console.log(`Step ${idx}: time is ${step.time}`);
   return(
     <TableRow
       key={idx}
@@ -122,7 +123,9 @@ const SortableProgramTable = SortableContainer(({program, handlers, categories, 
           </TableHeaderColumn>
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody
+        displayRowCheckbox={false}
+      >
         {program.map((step, idx) => 
           <SortableProgramRow
             key={idx}
@@ -134,6 +137,23 @@ const SortableProgramTable = SortableContainer(({program, handlers, categories, 
             todos={todos}
           />
         )}
+        <TableRow
+          selectable={false}
+        >
+          <TableRowColumn
+            style={{
+              width: "15%"
+            }}
+          >
+            <FlatButton
+              label="Add Step"
+              onTouchTap={handlers.handleOpenAddStepDialog}
+            />
+          </TableRowColumn>
+          <TableRowColumn />
+          <TableRowColumn />
+          <TableRowColumn />
+        </TableRow>
       </TableBody>
     </Table>
   )
@@ -200,7 +220,8 @@ class AppSettings extends React.Component {
                 handlers={{
                   handleMoveUp: this.handleMoveUp,
                   handleOpenOptions: this.handleOpenOptions,
-                  handleMoveDown: this.handleMoveDown
+                  handleMoveDown: this.handleMoveDown,
+                  handleOpenAddStepDialog: this.handleOpenAddStepDialog
                 }}
                 categories={this.props.categories}
                 todos={this.props.todos}
@@ -216,10 +237,6 @@ class AppSettings extends React.Component {
                 label="Save and return"
                 onTouchTap={this.handleSaveProgram}
                 primary={true}
-                />
-                <FlatButton
-                  label="Add Step"
-                  onTouchTap={this.handleOpenAddStepDialog}
                 />
                 <AddStepDialog
                   open={this.state.addStepDialogOpen}
