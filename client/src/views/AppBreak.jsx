@@ -6,8 +6,17 @@ export default function AppBreak(props) {
     <div
       className="content no-tabs"
     >
+      <h1
+        style={{
+          textAlign: "center"
+        }}
+      >Take a break!</h1>
+      <p
+        style={{
+          textAlign: "center"
+        }}
+      >You've earned it.</p>
       <Timer />
-      <p>Take a break - you've earned it!</p>
     </div>
   )
 }

@@ -8,7 +8,11 @@ function AppWork(props) {
     <div
       className="content no-tabs"
     >
-      <p>{props.activeTask}</p>
+      <h1
+        style={{
+          textAlign: "center"
+        }}
+      >{props.activeTask}</h1>
       <Timer />
     </div>
   )
