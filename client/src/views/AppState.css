@@ -19,7 +19,10 @@
 */
 
 .transition-enter {
-  transform: translate(500vw)!important;
+  /* for some reason 400vw is necessary
+     100vw puts it center screen, 200-300vw puts it on the screen
+   */
+  transform: translate(400vw)!important;
   /*position: absolute;
   top: 64px;
   left: 20%;*/
