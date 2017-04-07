@@ -17,7 +17,8 @@ const initialState = {
     category: 0,
     active: false,
     finished: false,
-    pomoCount: 0
+    pomoCount: 0,
+    order: 0
   },
   {
     text: "Create Redux store",
@@ -25,7 +26,8 @@ const initialState = {
     category: 0,
     active: true,
     finished: false,
-    pomoCount: 2
+    pomoCount: 2,
+    order: 1
   },
   {
     text: "Make coffee",
@@ -33,7 +35,8 @@ const initialState = {
     category: 0,
     active: false,
     finished: true,
-    pomoCount: 1
+    pomoCount: 1,
+    order: 2
   },
   {
     text: "Learn test-driven development",
@@ -41,7 +44,8 @@ const initialState = {
     category: 1,
     active: false,
     finished: false,
-    pomoCount: 0
+    pomoCount: 0,
+    order: 0
   }],
   timerRunning: false,
   timerPaused: false,
@@ -49,31 +53,35 @@ const initialState = {
   appState: APPSTATE.DEFAULT,
   program: [{
     appState: APPSTATE.WORK,
-    time: 1500,
+    time: 10,
     category: null,
     todo: 3
   },
   {
     appState: APPSTATE.REST,
-    time: 300
+    time: 10
   },
   {
     appState: APPSTATE.WORK,
-    time: 1500,
+    time: 10,
     category: 1,
     todo: APPSTATE.TASK.SELECT
   },
   {
     appState: APPSTATE.BREAK,
-    time: 1800
+    time: 10
   },
   {
     appState: APPSTATE.WORK,
-    time: 1500,
+    time: 10,
     category: 0,
     todo: APPSTATE.TASK.RANDOM
+  },
+  {
+    appState: APPSTATE.DEFAULT
   }],
   currentProgramIndex: 0,
+  stateChangeRequested: false,
   leftMenuOpen: false
 }
 

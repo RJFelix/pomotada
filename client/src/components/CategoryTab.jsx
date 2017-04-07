@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Tabs, Tab } from "material-ui-scrollable-tabs/Tabs";
 import TodoList from "./TodoList";
-import { setActiveCategory, startTimer } from "../actions";
+import { setActiveCategory, startTimer, setTodoOrder } from "../actions";
 import AddCategory from "./AddCategory";
 import Add from "material-ui/svg-icons/content/add";
 import RemoveCategory from "./RemoveCategory";
@@ -23,7 +23,9 @@ function CategoryTab(props) {
           <div className="content">
             <TodoList
               todos={props.todos.filter((todo) => todo.category === category.id)}
+              setTodoOrder={props.setTodoOrder}
             />
+            {!props.inRest &&
             <div
               style={{
                 marginTop: "24px"
@@ -35,6 +37,7 @@ function CategoryTab(props) {
                 label="Begin"
               />
             </div>
+            }
           </div>
         </Tab>
       )}
@@ -61,7 +64,8 @@ function mapDispatchToProps(dispatch) {
     setActiveCategory: (id) => dispatch(setActiveCategory(id)),
     startWork: () => {
       dispatch(startTimer());
-    }
+    },
+    setTodoOrder: (id, order) => dispatch(setTodoOrder(id, order))
   }
 }
 

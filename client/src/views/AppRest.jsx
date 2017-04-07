@@ -1,8 +1,9 @@
 import React from "react";
 import Timer from "../components/Timer";
 import CategoryTab from "../components/CategoryTab";
+import { connect } from "react-redux";
 
-export default function AppRest(props) {
+function AppRest(props) {
   return(
     <div
       className="content no-tabs"
@@ -12,13 +13,25 @@ export default function AppRest(props) {
           textAlign: "center"
         }}
       >Take a short rest!</h1>
+      {props.shouldSelectTask &&
       <p
         style={{
           textAlign: "center"
         }}
       >And select your next task.</p>
+      }
       <Timer />
-      <CategoryTab />
+      {props.shouldSelectTask &&
+      <CategoryTab inRest={true} />
+      }
     </div>
   )
 }
+
+function mapStateToProps(state) {
+  return {
+    shouldSelectTask: state.shouldSelectTask
+  }
+}
+
+export default connect(mapStateToProps)(AppRest);

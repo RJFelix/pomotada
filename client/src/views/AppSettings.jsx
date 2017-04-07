@@ -80,13 +80,13 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
           paddingLeft: "0"
         }}
       >
+        <DragHandle /> 
         <IconButton
           tooltip="Options"
           onTouchTap={() => handlers.handleOpenOptions(idx)}
         >
           <MoreVert />
-        </IconButton> 
-        <DragHandle /> 
+        </IconButton>       
       </TableRowColumn>
     </TableRow>
   )

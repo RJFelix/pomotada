@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { timerFinished } from "../actions";
+import { timerFinished, advanceProgram } from "../actions";
 import TimerControl from "./TimerControl";
 import CuteTimer from "./CuteTimer";
 
@@ -134,7 +134,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    timerFinished: () => dispatch(timerFinished())
+    timerFinished: () => { dispatch(timerFinished()); dispatch(advanceProgram()); }
   }
 }
 

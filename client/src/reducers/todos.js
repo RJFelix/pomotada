@@ -28,7 +28,8 @@ const reducers = {
       category: newTodoCategory,
       id: newID,
       pomoCount: 0, 
-      active: false
+      active: false,
+      order: newTodos.length
     });
     return { todos: newTodos };
   },
@@ -99,6 +100,12 @@ const reducers = {
                           .map((todo) => Object.assign({}, todo, { active: false }));
     return { todos: newTodos };
   },
+  [actions.SET_TODO_ORDER](state, action) {
+    let newTodos = state.todos.slice();
+    const idx = newTodos.findIndex(todo => todo.id === action.id);
+    newTodos[idx].order = action.order;
+    return { todos: newTodos }
+  }
 }
 
 export default reducers;

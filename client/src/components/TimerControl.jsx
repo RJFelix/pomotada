@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { startTimer, stopTimer, pauseTimer, timerFinished } from "../actions";
+import { startTimer, stopTimer, pauseTimer, timerFinished, advanceProgram } from "../actions";
 import PlayArrow from "material-ui/svg-icons/av/play-arrow";
 import Pause from "material-ui/svg-icons/av/pause";
 import Stop from "material-ui/svg-icons/av/stop";
@@ -46,7 +46,7 @@ function TimerControl(props) {
       }
       <IconButton
         tooltip="Skip to next step"
-        onTouchTap={props.finishTimer}
+        onTouchTap={props.advanceProgram}
       >
         <FastForward />
       </IconButton>
@@ -66,7 +66,8 @@ function mapDispatchToProps(dispatch) {
     startTimer: () => dispatch(startTimer()),
     pauseTimer: () => dispatch(pauseTimer()),
     stopTimer: () => dispatch(stopTimer()),
-    finishTimer: () => dispatch(timerFinished())
+    finishTimer: () => { dispatch(timerFinished()); dispatch(advanceProgram()); },
+    advanceProgram: () => dispatch(advanceProgram())
   }
 }
 

@@ -44,20 +44,10 @@ const reducers = {
         newTodos[idx].pomoCount++;
       }
     }
-    // transition to next app state
-    let newProgramIndex;
-    if(state.currentProgramIndex + 1 >= state.program.length) {
-      newProgramIndex = 0;
-    } else {
-      newProgramIndex = state.currentProgramIndex + 1;
-    }
     return {
       todos: newTodos,
-      appState: state.program[newProgramIndex].appState,
       timerRunning: true,
       timerPaused: false,
-      timerTime: state.program[newProgramIndex].time,
-      currentProgramIndex: newProgramIndex
     }
   }
 }

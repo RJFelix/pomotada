@@ -1,6 +1,6 @@
 import React from "react";
 import Paper from "material-ui/Paper";
-import { APPSTATE } from "../actions";
+import { advanceProgram, confirmStateChange, APPSTATE } from "../actions";
 import AppDefault from "./AppDefault";
 import AppWork from "./AppWork";
 import AppRest from "./AppRest";
@@ -11,6 +11,14 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import "./AppState.css";
 
+const programStateToComponent = {
+  [APPSTATE.DEFAULT]: <AppDefault />,
+  [APPSTATE.WORK]: <AppWork />,
+  [APPSTATE.REST]: <AppRest />,
+  [APPSTATE.BREAK]: <AppBreak />,
+  [APPSTATE.SETTINGS]: <AppSettings />
+}
+
 export default function AppState(props) {
   return(
     <ReactCSSTransitionGroup
@@ -18,46 +26,13 @@ export default function AppState(props) {
       transitionEnterTimeout={400}
       transitionLeaveTimeout={400}
     >
-      { props.state === APPSTATE.WORK &&
       <Paper
         className="main-paper"
-        key={APPSTATE.WORK}
+        key={Math.random()}
       >
-        <AppWork />
+        {programStateToComponent[props.state]}
       </Paper>
-      }
-      { props.state === APPSTATE.DEFAULT &&
-      <Paper
-        className="main-paper"
-        key={APPSTATE.DEFAULT}
-      >
-        <AppDefault />
-      </Paper>
-      }
-      { props.state === APPSTATE.REST &&
-      <Paper
-        className="main-paper"
-        key={APPSTATE.REST}
-      >
-        <AppRest />
-      </Paper>
-      }
-      { props.state === APPSTATE.BREAK &&
-      <Paper
-        className="main-paper"
-        key={APPSTATE.BREAK}
-      >
-        <AppBreak />
-      </Paper>
-      }
-      { props.state === APPSTATE.SETTINGS &&
-      <Paper
-        className="main-paper"
-        key={APPSTATE.SETTINGS}
-      >
-        <AppSettings />
-      </Paper>
-      }
     </ReactCSSTransitionGroup>
   )
 }
+

@@ -23,6 +23,14 @@ export function toggleTodo(id) {
   }
 }
 
+export function setTodoOrder(id, order) {
+  return {
+    type: actions.SET_TODO_ORDER,
+    id,
+    order
+  }
+}
+
 export function addCategory(title) {
   return {
     type: actions.ADD_CATEGORY,
@@ -136,5 +144,23 @@ export function setProgram(program) {
   return {
     type: actions.SET_PROGRAM,
     program
+  }
+}
+
+export function advanceProgram() {
+  return {
+    type: actions.ADVANCE_PROGRAM
+  }
+}
+
+export function requestStateChange() {
+  return {
+    type: actions.REQUEST_STATE_CHANGE
+  }
+}
+
+export function confirmStateChange() {
+  return {
+    type: actions.CONFIRM_STATE_CHANGE
   }
 }

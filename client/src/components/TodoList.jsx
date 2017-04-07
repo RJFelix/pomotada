@@ -2,41 +2,59 @@ import { List } from "material-ui/List";
 import TodoListItem from "./TodoListItem";
 import AddTodo from "./AddTodo";
 import React from "react";
+import { SortableContainer, arrayMove } from "react-sortable-hoc";
 
 import "./TodoList.css";
 
-export default function TodoList(props) {
+const SortableTodoList = SortableContainer(({todos}) => {
   return(
-    <div>
       <List>
-        {props.todos.filter((todo) => !todo.finished).map(todo =>
-          <span
-            key={todo.id}
-          >
-            <TodoListItem
-              text={todo.text}
-              id={todo.id}
-              finished={todo.finished}
-              pomoCount={todo.pomoCount}
-              active={todo.active}
-            />
-          </span>
-        )}
-        {props.todos.filter((todo) => todo.finished).map(todo =>
-          <span
-            key={todo.id}
-          >
-            <TodoListItem
-              text={todo.text}
-              id={todo.id}
-              finished={todo.finished}
-              pomoCount={todo.pomoCount}
-              active={todo.active}
-            />
-          </span>
+        {todos.map((todo, idx) =>
+          <TodoListItem
+            todo={todo}
+            index={idx}
+            key={idx}
+          />
         )}
       </List>
-      <AddTodo />
-    </div>
   );
+});
+
+export default class TodoList extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: props.todos.slice()
+    }
+  }
+
+  onSortEnd = ({oldIndex, newIndex}) => {
+    let newTodos = this.state.todos;
+    newTodos = arrayMove(newTodos, oldIndex, newIndex);
+    newTodos.forEach((todo, idx) => {
+      this.props.setTodoOrder(todo.id, idx);
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("TodoList will receive props:");
+    console.log(JSON.stringify(nextProps));
+    this.setState({
+      todos: nextProps.todos
+    })
+  }
+
+  render() {
+    return(
+      <div>
+        <SortableTodoList
+          todos={this.state.todos.sort((a, b) => a.order - b.order)}
+          onSortEnd={this.onSortEnd}
+          useDragHandle={true}
+        />
+        <AddTodo />
+      </div>
+    )
+  }
 }

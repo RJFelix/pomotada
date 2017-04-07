@@ -18,6 +18,16 @@ const reducers = {
   },
   [actions.SET_STATE.SETTINGS](state, action) {
     return { appState: actions.SET_STATE.SETTINGS }
+  },
+  [actions.REQUEST_STATE_CHANGE](state, action) {
+    return {
+      stateChangeRequested: true
+    }
+  },
+  [actions.CONFIRM_STATE_CHANGE](state, action) {
+    return {
+      stateChangeRequested: false
+    }
   }
 }
 

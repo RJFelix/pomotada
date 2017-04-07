@@ -4,11 +4,11 @@ import App from './App';
 import './index.css';
 import injectTapEventPlugin from "react-tap-event-plugin";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import store from "./store";
 import reducer from "./reducers";
 
 injectTapEventPlugin();
-let store = createStore(reducer);
+
 
 ReactDOM.render(
   <Provider store={store}>
