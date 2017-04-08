@@ -7,12 +7,22 @@ const reducers = {
     if(state.timerRunning && state.timerPaused) {
       return { timerPaused: false }
     } else {
+      // advance the program to next timed step if it's currently stopped
+      let newProgramIndex = state.currentProgramIndex;
+      while(state.program[newProgramIndex].appState === APPSTATE.DEFAULT) {
+        if(newProgramIndex + 1 >= state.program.length) {
+          newProgramIndex = 0;
+        } else {
+          newProgramIndex++;
+        }
+      }
       // start the program
       return { 
         timerRunning: true, 
         timerPaused: false, 
-        timerTime: state.program[state.currentProgramIndex].time,
-        appState: state.program[state.currentProgramIndex].appState
+        currentProgramIndex: newProgramIndex,
+        timerTime: state.program[newProgramIndex].time,
+        appState: state.program[newProgramIndex].appState
       };
     }    
   },

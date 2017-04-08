@@ -19,10 +19,8 @@ const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
   for(let i = 0; i < todo.pomoCount; i++) {
     pomos.push([<PomoIcon />]);
   }
-  console.log(`Todo ${todo.text} was given ${pomos.length} pomos.`)
   return(
-    <ListItem
-      
+    <ListItem   
       style={{
         color: todo.finished ? "lightgrey" : ""
       }}
@@ -48,21 +46,3 @@ const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
 });
 
 export default SortableTodoListItem;
-
-/*function TodoListItem(props) {
-  return(
-    <SortableTodoListItem
-      todo={props.todo}
-      index={props.index}
-      toggleActive={props.toggleActive}
-    />
-  )
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    toggleActive: (id) => dispatch(toggleActiveTodo(id))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(TodoListItem);*/
