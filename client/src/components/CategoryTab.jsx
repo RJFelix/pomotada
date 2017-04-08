@@ -5,7 +5,6 @@ import TodoList from "./TodoList";
 import { setActiveCategory, startTimer, setTodoOrder } from "../actions";
 import AddCategory from "./AddCategory";
 import Add from "material-ui/svg-icons/content/add";
-import RemoveCategory from "./RemoveCategory";
 import RaisedButton from "material-ui/RaisedButton";
 
 function CategoryTab(props) {
