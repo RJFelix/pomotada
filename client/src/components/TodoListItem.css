@@ -1,3 +1,5 @@
 .tdl-reorder {
   float: right;
+  /* bring in line with right icon button */
+  margin-top: -4px;
 }

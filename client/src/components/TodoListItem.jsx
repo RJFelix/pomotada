@@ -14,7 +14,6 @@ import "./TodoListItem.css";
 const DragHandle = SortableHandle(() => <Reorder className="reorder tdl-reorder"/>);
 
 const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
-  console.log(`Todo ${todo.id}: active status: ${todo.active}`);
   return(
     <ListItem
       primaryText={todo.text}
@@ -38,9 +37,11 @@ const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
       <DragHandle />
     </ListItem>
   )
-})
+});
 
-function TodoListItem(props) {
+export default SortableTodoListItem;
+
+/*function TodoListItem(props) {
   return(
     <SortableTodoListItem
       todo={props.todo}
@@ -50,14 +51,10 @@ function TodoListItem(props) {
   )
 }
 
-function mapStateToProps(state) {
-  return {}
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     toggleActive: (id) => dispatch(toggleActiveTodo(id))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoListItem);
+export default connect(null, mapDispatchToProps)(TodoListItem);*/

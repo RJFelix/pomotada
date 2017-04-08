@@ -3,15 +3,18 @@ import TodoListItem from "./TodoListItem";
 import AddTodo from "./AddTodo";
 import React from "react";
 import { SortableContainer, arrayMove } from "react-sortable-hoc";
+import { connect } from "react-redux";
+import { toggleActiveTodo } from "../actions";
 
 import "./TodoList.css";
 
-const SortableTodoList = SortableContainer(({todos}) => {
+const SortableTodoList = SortableContainer(({todos, toggleActive}) => {
   return(
       <List>
         {todos.map((todo, idx) =>
           <TodoListItem
             todo={todo}
+            toggleActive={() => toggleActive(todo.id)}
             index={idx}
             key={idx}
           />
@@ -20,17 +23,17 @@ const SortableTodoList = SortableContainer(({todos}) => {
   );
 });
 
-export default class TodoList extends React.Component {
+class TodoList extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      todos: props.todos.slice()
+      todos: props.todos
     }
   }
 
   onSortEnd = ({oldIndex, newIndex}) => {
-    let newTodos = this.state.todos;
+    let newTodos = this.state.todos.slice();
     newTodos = arrayMove(newTodos, oldIndex, newIndex);
     newTodos.forEach((todo, idx) => {
       this.props.setTodoOrder(todo.id, idx);
@@ -38,8 +41,6 @@ export default class TodoList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("TodoList will receive props:");
-    console.log(JSON.stringify(nextProps));
     this.setState({
       todos: nextProps.todos
     })
@@ -52,9 +53,18 @@ export default class TodoList extends React.Component {
           todos={this.state.todos.sort((a, b) => a.order - b.order)}
           onSortEnd={this.onSortEnd}
           useDragHandle={true}
+          toggleActive={this.props.toggleActive}
         />
         <AddTodo />
       </div>
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleActive: (id) => dispatch(toggleActiveTodo(id))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(TodoList);
