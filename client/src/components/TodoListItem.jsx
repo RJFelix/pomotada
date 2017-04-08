@@ -4,6 +4,7 @@ import { ListItem } from "material-ui/List";
 import Checkbox from "material-ui/Checkbox";
 import Reorder from "material-ui/svg-icons/action/reorder";
 import TodoListItemPopover from "./TodoListItemPopover";
+import PomoIcon from "./PomoIcon";
 
 import { SortableElement, SortableHandle } from "react-sortable-hoc";
 
@@ -14,9 +15,14 @@ import "./TodoListItem.css";
 const DragHandle = SortableHandle(() => <Reorder className="reorder tdl-reorder"/>);
 
 const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
+  let pomos = [];
+  for(let i = 0; i < todo.pomoCount; i++) {
+    pomos.push([<PomoIcon />]);
+  }
+  console.log(`Todo ${todo.text} was given ${pomos.length} pomos.`)
   return(
     <ListItem
-      primaryText={todo.text}
+      
       style={{
         color: todo.finished ? "lightgrey" : ""
       }}
@@ -34,6 +40,8 @@ const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
           />
       }
     >
+      {todo.text}
+      {pomos}
       <DragHandle />
     </ListItem>
   )
