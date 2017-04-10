@@ -44,7 +44,7 @@ function mapStateToProps(state) {
   let key = state.currentProgramIndex;
   if(state.appState === APPSTATE.SETTINGS) {
     key += 0.1;
-  } else if(state.apPState === APPSTATE.DEFAULT) {
+  } else if(state.appState === APPSTATE.DEFAULT) {
     key += 0.2;
   }
   return {
