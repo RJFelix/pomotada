@@ -10,11 +10,10 @@ import todos from "./todos";
 import time from "./time";
 import categories from "./categories";
 import appState from "./appState";
-import settings from "./settings";
 import misc from "./misc";
 import program from "./program";
 
-const reducers = Object.assign({}, todos, time, categories, appState, settings, misc, program);
+const reducers = Object.assign({}, todos, time, categories, appState, misc, program);
 
 function createReducer(initialState, handlers) {
   return function reducer(state = initialState, action) {

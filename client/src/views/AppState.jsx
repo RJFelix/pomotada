@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Paper from "material-ui/Paper";
-import { advanceProgram, confirmStateChange, APPSTATE } from "../actions";
+import { APPSTATE } from "../actions";
 import AppDefault from "./AppDefault";
 import AppWork from "./AppWork";
 import AppRest from "./AppRest";
@@ -38,6 +38,9 @@ function AppState(props) {
 }
 
 function mapStateToProps(state) {
+  // construct a key to uniquely identify the current state
+  // to prevent unwanted transitions and ensure transitions fire
+  // between two different AppWork views
   let key = state.currentProgramIndex;
   if(state.appState === APPSTATE.SETTINGS) {
     key += 0.1;

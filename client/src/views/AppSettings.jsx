@@ -7,8 +7,6 @@ import { setAppState, setProgram, APPSTATE } from "../actions";
 import IconButton from "material-ui/IconButton";
 import MoreVert from "material-ui/svg-icons/navigation/more-vert";
 import Reorder from "material-ui/svg-icons/action/reorder";
-import AddBox from "material-ui/svg-icons/content/add-box";
-import { indigo400 } from "material-ui/styles/colors";
 
 import AddStepDialog from "../components/AddStepDialog";
 

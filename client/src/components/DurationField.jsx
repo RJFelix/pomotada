@@ -1,38 +1,5 @@
 import React from "react";
 import TextField from "material-ui/TextField";
-import formatTime from "../util/FormatTime";
-
-/*export default function DurationField(props) {
-  return(
-    <div
-      style={{paddingLeft: "24px"}}
-    >
-      <TextField
-        floatingLabelText="Hours"
-        value={Math.floor(props.value / 3600)}
-        type="number"
-        onChange={(evt, val) => props.onChange(evt, val * 3600)}
-        name="DurationFieldHours"
-      />
-      :
-      <TextField
-        floatingLabelText="Mins"
-        value={Math.floor((props.value % 3600) / 60)}
-        type="number"
-        name="DurationFieldMinutes"
-        onChange={(evt, val) => props.onChange(evt, val * 60)}
-      />
-      :
-      <TextField
-        floatingLabelText="Secs"
-        value={props.value % 60}
-        type="number"
-        onChange={(evt, val) => props.onChange(evt, val)}
-        name="DurationFieldSeconds"
-      />
-    </div>
-  )
-}*/
 
 class DurationField extends React.Component {
   constructor(props) {

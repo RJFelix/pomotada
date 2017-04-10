@@ -1,14 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
 import { ListItem } from "material-ui/List";
 import Checkbox from "material-ui/Checkbox";
 import Reorder from "material-ui/svg-icons/action/reorder";
 import TodoListItemPopover from "./TodoListItemPopover";
 import PomoIcon from "./PomoIcon";
-
 import { SortableElement, SortableHandle } from "react-sortable-hoc";
-
-import { toggleActiveTodo } from "../actions";
 
 import "./TodoListItem.css";
 
