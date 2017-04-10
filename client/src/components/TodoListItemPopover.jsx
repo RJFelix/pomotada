@@ -10,6 +10,8 @@ import Divider from "material-ui/Divider";
 
 import { toggleTodo, removeTodo } from "../actions";
 
+import "./TodoListItemPopover.css";
+
 class TodoListItemPopover extends React.Component {
   constructor(props) {
     super(props);
@@ -40,6 +42,7 @@ class TodoListItemPopover extends React.Component {
         tooltip="More options"
         onTouchTap={this.handleButtonTouch}
         style={this.props.style}
+        className="todo-popover-button"
       >
         <MoreVert />
         <Popover
