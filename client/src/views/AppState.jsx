@@ -15,7 +15,7 @@ import "./AppState.css";
 function AppState(props) {
   const programStateToComponent = {
     [APPSTATE.DEFAULT]: <AppDefault />,
-    [APPSTATE.WORK]: <AppWork key={props.currentKey} />,
+    [APPSTATE.WORK]: <AppWork />,
     [APPSTATE.REST]: <AppRest />,
     [APPSTATE.BREAK]: <AppBreak />,
     [APPSTATE.SETTINGS]: <AppSettings />

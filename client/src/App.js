@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import { connect } from "react-redux";
 
 import Topper from "./components/Topper";
 import LeftMenu from "./components/LeftMenu";
@@ -40,19 +39,11 @@ class App extends Component {
           <LeftMenu
             windowHeight={this.state.windowHeight}
            />
-          <AppState
-            state={this.props.appState}
-          />  
+          <AppState />  
         </div>
       </MuiThemeProvider>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    appState: state.appState
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
