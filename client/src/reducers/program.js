@@ -54,6 +54,11 @@ const reducers = {
       todos: newTodos,
       shouldSelectTask
     }
+  },
+  [actions.RESET_PROGRAM](state, action) {
+    return {
+      currentProgramIndex: 0
+    }
   }
 }
 

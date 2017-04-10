@@ -153,6 +153,12 @@ export function advanceProgram() {
   }
 }
 
+export function resetProgram() {
+  return {
+    type: actions.RESET_PROGRAM
+  }
+}
+
 export function requestStateChange() {
   return {
     type: actions.REQUEST_STATE_CHANGE

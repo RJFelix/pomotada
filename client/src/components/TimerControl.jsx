@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { startTimer, stopTimer, pauseTimer, timerFinished, advanceProgram } from "../actions";
+import { startTimer, stopTimer, pauseTimer, timerFinished, advanceProgram, resetProgram } from "../actions";
 import PlayArrow from "material-ui/svg-icons/av/play-arrow";
 import Pause from "material-ui/svg-icons/av/pause";
 import Stop from "material-ui/svg-icons/av/stop";
@@ -65,7 +65,7 @@ function mapDispatchToProps(dispatch) {
   return {
     startTimer: () => dispatch(startTimer()),
     pauseTimer: () => dispatch(pauseTimer()),
-    stopTimer: () => dispatch(stopTimer()),
+    stopTimer: () => { dispatch(stopTimer()); dispatch(resetProgram()); },
     finishTimer: () => { dispatch(timerFinished()); dispatch(advanceProgram()); },
     advanceProgram: () => dispatch(advanceProgram())
   }
