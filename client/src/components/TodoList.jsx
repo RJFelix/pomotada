@@ -6,8 +6,6 @@ import { SortableContainer, arrayMove } from "react-sortable-hoc";
 import { connect } from "react-redux";
 import { toggleActiveTodo } from "../actions";
 
-import "./TodoList.css";
-
 const SortableTodoList = SortableContainer(({todos, toggleActive}) => {
   return(
       <List>

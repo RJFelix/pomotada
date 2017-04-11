@@ -1,0 +1,35 @@
+
+/* Material-UI adds some unwanted inline transition effects,
+   hence !important everywhere.
+*/
+
+.enter {
+   /* 400vw is necessary
+      100vw puts it center screen, 200-300vw puts it on the screen
+    */
+    transform: translate(400vw)!important;    
+}
+
+.enterActive {
+  transform: translate(0%)!important;
+  transition: transform 400ms ease-in-out !important;
+}
+
+.leave {
+  position: absolute;
+  top: 64px;
+  left: 20%;
+  transform: translate(0%)!important;
+}
+
+.leaveActive {
+  transform: translate(-100vw)!important;
+  transition: transform 400ms ease-in-out !important;
+}
+
+@media only screen and (max-device-width: 800px) {
+  .leave {
+    left: 0;
+    z-index: -1!important;
+  }
+}

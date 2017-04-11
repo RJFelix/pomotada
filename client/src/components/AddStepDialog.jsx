@@ -9,7 +9,7 @@ import Divider from "material-ui/Divider";
 import DurationField from "./DurationField";
 import { APPSTATE } from "../actions";
 
-import "./AddStepDialog.css";
+import styles from "./AddStepDialog.css";
 
 class AddStepDialog extends React.Component {
   constructor(props) {
@@ -95,13 +95,13 @@ class AddStepDialog extends React.Component {
         autoScrollBodyContent={true}
       >
         <div
-          className="dialog-row"
+          className={styles.row}
         >
           <div
-           className="dialog-left-column"
+           className={styles.leftColumn}
           >
             <label
-              className="dialog-label"
+              className={styles.label}
             >
               Type
             </label>
@@ -130,13 +130,13 @@ class AddStepDialog extends React.Component {
         </div>
         { this.state.typeDropdownValue !== APPSTATE.DEFAULT &&
         <div
-          className="dialog-row"
+          className={styles.row}
         >
           <div
-            className="dialog-left-column"
+            className={styles.leftColumn}
           >
             <label
-              className="dialog-label"
+              className={styles.label}
               htmlFor="DurationField"
             >
               Duration
@@ -151,13 +151,13 @@ class AddStepDialog extends React.Component {
         { this.state.typeDropdownValue === APPSTATE.WORK &&
         <div>
           <div
-            className="dialog-row"
+            className={styles.row}
           >
             <div
-              className="dialog-left-column"
+              className={styles.leftColumn}
             >
               <label
-                className="dialog-label"
+                className={styles.label}
               >
                 Category
               </label>
@@ -181,13 +181,13 @@ class AddStepDialog extends React.Component {
             </DropDownMenu>
           </div>
           <div
-            className="dialog-row"
+            className={styles.row}
           >
             <div
-             className="dialog-left-column"
+             className={styles.leftColumn}
             >
               <label
-                className="dialog-label"
+                className={styles.label}
               >
                 Task
               </label>

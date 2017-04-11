@@ -1,10 +1,10 @@
-.pomo-img-container:first-of-type {
+.container:first-of-type {
   margin-left: 16px;
 }
 
 @media only screen and (max-device-width: 800px) {
   /* push pomo counters onto new line on mobile */
-  .pomo-img-container:first-of-type:before {
+  .container:first-of-type:before {
     content: " ";
     clear: right;
     display: block;

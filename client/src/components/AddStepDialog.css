@@ -1,13 +1,13 @@
-.dialog-label {
+.label {
   padding-right: 30px;
 }
 
-.dialog-left-column {
+.leftColumn {
   width: 70px;
   display: inline-block;
 }
 
-.dialog-row {
+.row {
   width: 100%;
   height: 100px;
   display: flex;

@@ -6,9 +6,10 @@ import TodoListItemPopover from "./TodoListItemPopover";
 import PomoIcon from "./PomoIcon";
 import { SortableElement, SortableHandle } from "react-sortable-hoc";
 
-import "./TodoListItem.css";
+import styles from "./TodoListItem.css";
 
-const DragHandle = SortableHandle(() => <Reorder className="reorder tdl-reorder"/>);
+// /"reorder tdl-reorder"
+const DragHandle = SortableHandle(() => <Reorder className={styles.dragHandle}/>);
 
 const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
   let pomos = [];

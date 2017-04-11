@@ -2,11 +2,12 @@ import React from "react";
 import Timer from "../components/Timer";
 import CategoryTab from "../components/CategoryTab";
 import { connect } from "react-redux";
+import styles from "./States.css";
 
 function AppRest(props) {
   return(
     <div
-      className="content no-tabs"
+      className={[styles.content, styles.noTabs].join(" ")}
     >
       <h1
         style={{

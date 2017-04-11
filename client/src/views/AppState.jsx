@@ -10,7 +10,8 @@ import AppSettings from "./AppSettings";
 
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-import "./AppState.css";
+import styles from "./AppState.css";
+import transition from "./transition.css";
 
 function AppState(props) {
   const programStateToComponent = {
@@ -23,12 +24,16 @@ function AppState(props) {
 
   return(
     <ReactCSSTransitionGroup
-      transitionName="transition"
+      transitionName={{
+        enter: transition.enter,
+        enterActive: transition.enterActive,
+        leave: transition.leave,
+        leaveActive: transition.leaveActive}}
       transitionEnterTimeout={400}
       transitionLeaveTimeout={400}
     >
       <Paper
-        className="main-paper"
+        className={styles.main}
         key={props.currentKey}
       >
         {programStateToComponent[props.appState]}

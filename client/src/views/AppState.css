@@ -1,52 +1,11 @@
-.main-paper {
+.main {
   width: 60%;
   margin: 0 auto;
   padding-bottom: 16px;
 }
 
 @media only screen and (max-device-width: 800px) {
-  .main-paper{
+  .main{
     width: 100%;
   }
-
-  .transition-leave {
-    left: 0;
-    z-index: -1!important;
-  }
-}
-
-/* Material-UI adds some unwanted transition effects,
-   hence !important everywhere.
-*/
-
-.transition-enter {
-  /* for some reason 400vw is necessary
-     100vw puts it center screen, 200-300vw puts it on the screen
-   */
-  transform: translate(400vw)!important;
-  /*position: absolute;
-  top: 64px;
-  left: 20%;*/
-}
-
-.transition-enter.transition-enter-active {
-  /*position: absolute;
-  top: 64px;
-  left: 20%;*/
-  transform: translate(0%)!important;
-  transition: transform 400ms ease-in-out !important;
-}
-
-.transition-leave {
-  position: absolute;
-  top: 64px;
-  left: 20%;
-  transform: translate(0%)!important;
-}
-
-.transition-leave.transition-leave-active {
-  /*position: absolute;
-  top: 64px;*/
-  transform: translate(-100vw)!important;
-  transition: transform 400ms ease-in-out !important;
 }

@@ -2,11 +2,12 @@ import React from "react";
 import Timer from "../components/Timer";
 import { connect } from "react-redux";
 import { stopTimer } from "../actions";
+import styles from "./States.css";
 
 function AppWork(props) {
   return(
     <div
-      className="content no-tabs"
+      className={[styles.content, styles.noTabs].join(" ")}
     >
       <h1
         style={{

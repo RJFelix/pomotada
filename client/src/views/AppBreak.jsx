@@ -1,10 +1,11 @@
 import React from "react";
 import Timer from "../components/Timer";
+import styles from "./States.css";
 
 export default function AppBreak(props) {
   return(
     <div
-      className="content no-tabs"
+      className={[styles.content, styles.noTabs].join(" ")}
     >
       <h1
         style={{

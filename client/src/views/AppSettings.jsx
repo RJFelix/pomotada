@@ -14,9 +14,10 @@ import { SortableContainer, SortableElement, SortableHandle, arrayMove } from "r
 
 import formatTime from "../util/FormatTime";
 
-import "./AppSettings.css";
+import dragHandleStyles from "./AppSettings.css";
+import styles from "./States.css";
 
-const DragHandle = SortableHandle(() => <Reorder className="reorder"/>);
+const DragHandle = SortableHandle(() => <Reorder className={dragHandleStyles.reorder}/>);
 
 const SortableProgramRow = SortableElement(({step, idx, handlers, categories, todos}) => {
 
@@ -212,7 +213,7 @@ class AppSettings extends React.Component {
       <div>
         <Tabs>
           <Tab label="Program">
-            <div className="content">
+            <div className={styles.content}>
               <SortableProgramTable
                 program={this.state.program}
                 handlers={{
@@ -245,7 +246,7 @@ class AppSettings extends React.Component {
             </div>   
           </Tab>
           <Tab label="General">
-            <div className="content">
+            <div className={styles.content}>
               <p>No more settings... yet.</p>
               <FlatButton
               label="Save and return"

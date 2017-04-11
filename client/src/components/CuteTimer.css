@@ -1,10 +1,10 @@
-.animated-timer {
+.animated {
   /* experimentally determined dash length */
   stroke-dasharray: 1679;
   stroke-dashoffset: 0;
 }
 
-@keyframes dash {
+@keyframes :global(dash) {
   to {
     stroke-dashoffset: 1679;
   }

@@ -1,11 +1,10 @@
 import React from "react";
 import CategoryTab from "../components/CategoryTab";
+import styles from "./States.css";
 
 export default function AppDefault(props) {
   return(
-    <div
-      className="paper-interior"
-    >
+    <div className={styles.content}    >
       <CategoryTab />
     </div>
   )
