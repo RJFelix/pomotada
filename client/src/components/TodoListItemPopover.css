@@ -1,7 +1,8 @@
 @media only screen and (max-device-width: 800px) {
   .pomo-img-container ~ .todo-popover-button {
     /* move down icon button to match drag handle
-       iff it follows pomo icons on mobile */
+       iff it follows pomo icons on mobile 
+       !important - MUI has inline padding on root element */
     padding-top: 28px!important;
   }
 }
