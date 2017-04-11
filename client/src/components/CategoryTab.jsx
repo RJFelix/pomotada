@@ -50,6 +50,9 @@ function CategoryTab(props) {
     </Tabs>
   )
 }
+CategoryTab.propTypes = {
+  inRest: React.PropTypes.bool
+}
 
 function mapStateToProps(state) {
   return {

@@ -22,6 +22,11 @@ const SortableTodoList = SortableContainer(({todos, toggleActive}) => {
 });
 
 class TodoList extends React.Component {
+
+  static propTypes = {
+    todos: React.PropTypes.array.isRequired,
+    setTodoOrder: React.PropTypes.func.isRequired
+  }
   
   constructor(props) {
     super(props);

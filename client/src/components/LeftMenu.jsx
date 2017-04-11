@@ -6,6 +6,10 @@ import { toggleLeftMenu, setAppState, APPSTATE } from "../actions";
 
 
 class LeftMenu extends React.Component {
+  static propTypes = {
+    windowHeight: React.PropTypes.number.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {

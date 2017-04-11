@@ -41,5 +41,9 @@ const SortableTodoListItem = SortableElement(({todo, toggleActive}) => {
     </ListItem>
   )
 });
+SortableTodoListItem.propTypes = {
+  todo: React.PropTypes.object.isRequired,
+  toggleActive: React.PropTypes.func.isRequired
+}
 
 export default SortableTodoListItem;

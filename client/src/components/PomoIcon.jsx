@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./PomoIcon.css";
 
-export default function PomoIcon(props) {
+export default function PomoIcon() {
   return(
     <span className={styles.container}>
       <img

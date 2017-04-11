@@ -2,7 +2,7 @@ import React from "react";
 import Timer from "../components/Timer";
 import styles from "./States.css";
 
-export default function AppBreak(props) {
+export default function AppBreak() {
   return(
     <div
       className={[styles.content, styles.noTabs].join(" ")}

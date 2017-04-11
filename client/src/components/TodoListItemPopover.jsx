@@ -13,6 +13,10 @@ import { toggleTodo, removeTodo } from "../actions";
 import styles from "./TodoListItemPopover.css";
 
 class TodoListItemPopover extends React.Component {
+  static propTypes = {
+    id: React.PropTypes.number.isRequired,
+    finished: React.PropTypes.bool.isRequired
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -46,12 +50,12 @@ class TodoListItemPopover extends React.Component {
       >
         <MoreVert />
         <Popover
-        open={this.state.open}
-        anchorEl={this.state.anchorElement}
-        anchorOrigin={ {"horizontal": "left", "vertical": "bottom"} }
-        targetOrigin={ {"horizontal": "left", "vertical": "top"} }
-        onRequestClose={this.handleClose}
-      >
+          open={this.state.open}
+          anchorEl={this.state.anchorElement}
+          anchorOrigin={ {"horizontal": "left", "vertical": "bottom"} }
+          targetOrigin={ {"horizontal": "left", "vertical": "top"} }
+          onRequestClose={this.handleClose}
+        >
           <Menu>
             <MenuItem 
               primaryText={ this.props.finished ? "Un-finish" : "Finish" }

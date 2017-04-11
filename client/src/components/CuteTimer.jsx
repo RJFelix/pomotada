@@ -52,5 +52,12 @@ function CuteTimer(props) {
     </div>
   )
 }
+CuteTimer.propTypes = {
+  time: React.PropTypes.number.isRequired,
+  formattedTime: React.PropTypes.string.isRequired,
+  running: React.PropTypes.bool,
+  finish: React.PropTypes.bool,
+  paused: React.PropTypes.bool,
+}
 
 export default CuteTimer;

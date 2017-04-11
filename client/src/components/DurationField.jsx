@@ -2,6 +2,10 @@ import React from "react";
 import TextField from "material-ui/TextField";
 
 class DurationField extends React.Component {
+  static propTypes = {
+    value: React.PropTypes.number
+  }
+
   constructor(props) {
     super(props);
     this.state = {
