@@ -13,19 +13,19 @@ class DurationField extends React.Component {
 
   handleChangeHours = (evt, hours) => {
     this.setState({
-      hours
+      hours: Number(hours)
     }, () => this.props.onChange(evt, this.calcTotalSeconds()));
   }
 
   handleChangeMinutes = (evt, minutes) => {
     this.setState({
-      minutes
+      minutes: Number(minutes)
     }, () => this.props.onChange(evt, this.calcTotalSeconds()));
   }
 
   handleChangeSeconds = (evt, seconds) => {
     this.setState({
-      seconds
+      seconds: Number(seconds)
     }, () => this.props.onChange(evt, this.calcTotalSeconds()));
   }
 
