@@ -1,5 +1,5 @@
 @media only screen and (max-device-width: 800px) {
-  .span ~ .button {
+  span ~ .button {
     /* move down icon button to match drag handle
        iff it follows pomo icons on mobile 
        !important - MUI has inline padding on root element */
