@@ -53,7 +53,6 @@ class LeftMenu extends React.Component {
           onTouchTap={this.handleCloseSettings}
         />
         }
-        <MenuItem>Another Item</MenuItem>
       </Drawer>
     )
   }
