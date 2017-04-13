@@ -9,7 +9,7 @@ import MoreVert from "material-ui/svg-icons/navigation/more-vert";
 import Reorder from "material-ui/svg-icons/action/reorder";
 
 import AddStepDialog from "../components/AddStepDialog";
-
+  
 import { SortableContainer, SortableElement, SortableHandle, arrayMove } from "react-sortable-hoc";
 
 import formatTime from "../util/FormatTime";
