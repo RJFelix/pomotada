@@ -24,8 +24,8 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
   // builds string in format [category]: [task]
   const taskText = () => {
     let categoryPortion, todoPortion;
-    if((typeof step.todo !== typeof undefined)) {
-      if(typeof step.todo === typeof 1) {
+    if((step.todo !== undefined)) {
+      if(typeof step.todo === "Number") {
         const thisTodo = todos.find(todo => step.todo === todo.id);
         todoPortion = `${thisTodo.text}`;
         categoryPortion = `${categories.find(cat => cat.id === thisTodo.category).title}`;
@@ -39,8 +39,8 @@ const SortableProgramRow = SortableElement(({step, idx, handlers, categories, to
     } else {
       todoPortion = "---";
     }
-    if(!categoryPortion && (typeof step.category !== typeof undefined)) {
-      if(typeof step.category === typeof 1) {
+    if(!categoryPortion && (step.category !== undefined)) {
+      if(typeof step.category === "Number") {
         categoryPortion = `${categories.find(cat => step.category === cat.id).title}`;
       } else if(step.category === APPSTATE.TASK.ANY) {
         categoryPortion = "Any category";
